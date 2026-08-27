@@ -157,7 +157,7 @@ export default function Header() {
             <p><span>T</span> 051-123-1234</p>
             <p><span>F</span> 051-123-1234</p>
             <p><span>E</span> 123@midbarsolution.com</p>
-            <p className="footer-address"><span>A</span> 부산 강서구 명지</p>
+            <p className="footer-address"><span>A</span> 부산 강서구 명지국제6로 21 도형건설, 403호</p>
           </div>
         </div>
       </aside>

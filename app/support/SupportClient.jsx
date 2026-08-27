@@ -225,11 +225,18 @@ export default function SupportClient() {
       {/* 2. 오시는 길 Section */}
       <section className="support-section support-sec-map">
         <div className="support-section-container">
-          <h1 className="support-section-title">오시는 길</h1>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '12px', marginBottom: '20px' }}>
+            <div>
+              <h1 className="support-section-title" style={{ marginBottom: '8px' }}>오시는 길</h1>
+              <p style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '16px', fontWeight: '600' }}>
+                📍 부산 강서구 명지국제6로 21 도형건설, 403호
+              </p>
+            </div>
+          </div>
 
           <div className="support-map-placeholder">
             <iframe
-              src="https://maps.google.com/maps?q=35.1678021408768,128.9545546530673&t=&z=18&ie=UTF8&iwloc=&output=embed"
+              src="https://maps.google.com/maps?q=%EB%B6%80%EC%82%B0%20%EA%B0%95%EC%84%9C%EA%B5%AC%20%EB%AA%85%EC%A7%80%EA%B5%AD%EC%A0%9C6%EB%A1%9C%2021&t=&z=17&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0, borderRadius: '20px' }}
@@ -242,22 +249,28 @@ export default function SupportClient() {
           <table className="support-directions-table">
             <thead>
               <tr>
-                <th style={{ width: '20%' }}>구분</th>
-                <th style={{ width: '80%' }}>오시는 방법</th>
+                <th style={{ width: '18%' }}>구분</th>
+                <th style={{ width: '82%' }}>오시는 방법</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td><span className="badge-subway">지하철</span></td>
-                <td>부산-김해경전철 <strong>서부산유통지구역</strong> 하차 ➔ 도보 이동</td>
+                <td>
+                  <strong>1호선 하단역</strong> (3번 출구) 또는 <strong>2호선 사상역</strong> ➔ 명지국제신도시 방면 버스 환승
+                </td>
               </tr>
               <tr>
                 <td><span className="badge-bus">버스</span></td>
-                <td><strong>서부산유통지구역</strong> 정류장 하차 ➔ 도보 3분</td>
+                <td>
+                  <strong>명지국제신도시</strong> / <strong>대방노블랜드</strong> 정류장 하차 (급행 1009, 1009-1, 1011, 58-2, 3번 등) ➔ <strong>도보 2분</strong> (약 150m)
+                </td>
               </tr>
               <tr>
                 <td><span className="badge-car">자가용</span></td>
-                <td>내비게이션에 <strong>(주)미드바르 솔루션</strong> 또는 <strong>부산 강서구 명지</strong> 검색</td>
+                <td>
+                  내비게이션에 <strong>부산 강서구 명지국제6로 21</strong> 또는 <strong>도형건설</strong> 검색 (건물 주차장 이용 가능)
+                </td>
               </tr>
             </tbody>
           </table>
