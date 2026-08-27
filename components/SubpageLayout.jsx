@@ -171,7 +171,7 @@ export default function SubpageLayout({
 
       {/* Split Layout Container */}
       <div 
-        className={`split-view-container ${type === 'products' ? 'products-card' : ''} ${sidebarOpen ? 'sidebar-active' : ''}`}
+        className={`split-view-container ${type === 'products' ? 'products-card' : ''} ${sidebarOpen ? 'sidebar-active' : ''} ${type === 'tech' && activeTab === 'hvac' ? 'tech-cinematic-hvac' : ''}`}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
@@ -212,27 +212,29 @@ export default function SubpageLayout({
           </>
         )}
 
-        {/* Left Side: Visual Image/Gradient */}
-        <div className="split-left-visual">
-          {currentBgImage ? (
-            <div className="split-visual-image-container" style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-              <img 
-                src={currentBgImage} 
-                alt={currentTitle} 
-                className="split-visual-image-img"
-                style={{ maxWidth: '100%', maxHeight: '420px', objectFit: 'cover', borderRadius: '14px', cursor: 'pointer', boxShadow: '0 12px 30px rgba(0,0,0,0.4)' }}
-                onClick={() => setZoomOpen(true)}
+        {/* Left Side: Visual Image/Gradient (For normal non-cinematic views) */}
+        {!(type === 'tech' && activeTab === 'hvac') && (
+          <div className="split-left-visual">
+            {currentBgImage ? (
+              <div className="split-visual-image-container" style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+                <img 
+                  src={currentBgImage} 
+                  alt={currentTitle} 
+                  className="split-visual-image-img"
+                  style={{ maxWidth: '100%', maxHeight: '420px', objectFit: 'cover', borderRadius: '14px', cursor: 'pointer', boxShadow: '0 12px 30px rgba(0,0,0,0.4)' }}
+                  onClick={() => setZoomOpen(true)}
+                />
+              </div>
+            ) : (
+              <div 
+                className="split-visual-gradient" 
+                style={{ background: currentBgGradient || 'radial-gradient(circle, #102648 0%, #07101e 100%)', width: '100%', height: '100%' }}
               />
-            </div>
-          ) : (
-            <div 
-              className="split-visual-gradient" 
-              style={{ background: currentBgGradient || 'radial-gradient(circle, #102648 0%, #07101e 100%)', width: '100%', height: '100%' }}
-            />
-          )}
-        </div>
+            )}
+          </div>
+        )}
 
-        {/* Right Side: Text & Stats Content */}
+        {/* Text & Stats Content (For tech-cinematic-hvac, this sits directly on the left dark gradient) */}
         <div className="split-right-content">
           <div className="content-box-inner">
             <h1 className="content-main-title">{currentTitle}</h1>
