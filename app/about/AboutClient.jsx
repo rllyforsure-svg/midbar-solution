@@ -80,9 +80,9 @@ export default function AboutClient() {
 
             <div className="about-message-logo">
               <img
-                src="/images/logo-white.svg"
+                src="/images/logo.svg"
                 alt="MIDBAR SOLUTION"
-                style={{ height: '36px', width: 'auto', display: 'block' }}
+                style={{ height: '42px', width: 'auto', display: 'block' }}
               />
             </div>
           </div>

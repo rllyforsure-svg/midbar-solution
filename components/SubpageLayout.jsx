@@ -154,7 +154,10 @@ export default function SubpageLayout({
       {/* Sub-tabs Navigation Bar */}
       <div className="subpage-tabs-nav">
         <div className="container sub-tabs-container">
-          {tabs.map((tab) => (
+          {(type === 'products'
+            ? tabs.filter((t) => t.key !== 'ai')
+            : tabs
+          ).map((tab) => (
             <Link
               key={tab.key}
               href={`/${type}/${tab.key}`}
