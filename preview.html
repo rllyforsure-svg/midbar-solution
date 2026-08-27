@@ -909,19 +909,50 @@
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
     }
 
-    .panel-cta-btn {
+    /* Dual Button Actions Row (호버 시 은은하게 페이드인) */
+    .panel-actions-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 6px;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    .hero-split-panel.is-expanded .panel-actions-row {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    /* Subtle, Elegant Glassmorphic Button */
+    .panel-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
+      padding: 10px 22px;
       font-family: var(--font-heading);
-      font-size: 15px;
-      font-weight: 800;
+      font-size: 14.5px;
+      font-weight: 700;
       color: #ffffff;
-      background: #2b82e6;
-      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.28);
       border-radius: 8px;
-      box-shadow: 0 8px 24px rgba(43, 130, 230, 0.5);
-      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .panel-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.6);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
     }
 
     /* Hover States */
@@ -1037,9 +1068,10 @@
             <span class="panel-badge">HVAC & REFRIGERATION</span>
             <h2 class="panel-title">냉동공조</h2>
             <p class="panel-desc">스마트 클린룸 & 정밀 항온항습 제어 시스템</p>
-            <span class="panel-cta-btn">
-              핵심기술 보기 <span class="arrow">→</span>
-            </span>
+            <div class="panel-actions-row">
+              <a class="panel-btn" onclick="switchPage('tech'); event.stopPropagation();">핵심기술</a>
+              <a class="panel-btn" onclick="switchPage('products'); event.stopPropagation();">제품소개</a>
+            </div>
           </div>
         </div>
       </div>
@@ -1050,7 +1082,6 @@
         id="panel-right-el"
         onmouseenter="handlePanelHover('right')"
         onmouseleave="handlePanelHover(null)"
-        onclick="switchPage('tech')"
       >
         <div class="panel-click-layer">
           <div class="panel-bg-image bg-drone"></div>
@@ -1060,9 +1091,10 @@
             <span class="panel-badge">AUTONOMOUS MARINE ROBOTICS</span>
             <h2 class="panel-title">수상드론</h2>
             <p class="panel-desc">해양 환경 모니터링 & 자율운항 순찰 수상드론</p>
-            <span class="panel-cta-btn">
-              핵심기술 보기 <span class="arrow">→</span>
-            </span>
+            <div class="panel-actions-row">
+              <a class="panel-btn" onclick="switchPage('tech'); event.stopPropagation();">핵심기술</a>
+              <a class="panel-btn" onclick="switchPage('products'); event.stopPropagation();">제품소개</a>
+            </div>
           </div>
         </div>
       </div>
