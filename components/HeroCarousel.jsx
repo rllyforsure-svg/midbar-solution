@@ -8,7 +8,7 @@ export default function HeroCarousel() {
 
   const slides = [
     {
-      title: 'SEE BEYOND,\nMIDBAR SOLUTION',
+      title: 'MIDBAR SOLUTION',
       desc: '(주)미드바르 솔루션은 스마트 냉동공조 제어 시스템과 해양 자율운항 수상드론 기술을 융합하여 혁신적인 미래 산업 생태계를 선도합니다.',
       badge: 'NEXT MOBILITY & CLIMATE TECH',
       bgGrad: 'linear-gradient(135deg, #0c1a30 0%, #050b15 100%)',

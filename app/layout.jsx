@@ -45,7 +45,7 @@ export default function RootLayout({ children }) {
 
               {/* 2. Text (Slogan & Description) Column */}
               <div className="footer-col brand-desc-col">
-                <h4 className="footer-tagline">SEE BEYOND, MIDBAR SOLUTION</h4>
+                <h4 className="footer-tagline">MIDBAR SOLUTION</h4>
                 <p className="footer-desc">
                   (주)미드바르 솔루션은 스마트 냉동공조 인프라와 친환경 해양 자율운항 수상드론 기술을 융합하여 혁신적인 미래 산업 가치를 창출합니다.
                 </p>
