@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>(주)미드바르 솔루션 - 스마트 냉동공조 & 해양 자율운항 수상드론</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    /* =========================================================
+       시온테크 오리지널 테마 변수 및 글로벌 CSS 100% 매핑
+       ========================================================= */
+    :root {
+      --font-primary: 'Inter', 'Noto Sans KR', sans-serif;
+      --font-heading: 'Outfit', sans-serif;
+      --bg-dark-blue: #0c1524;
+      --bg-midnight: #07101e;
+      --footer-navy: #103A62;
+      --accent-blue: #2b82e6;
+      --accent-glow: rgba(43, 130, 230, 0.4);
+      --text-white: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.7);
+      --card-bg: #111e33;
+      --card-border: rgba(255, 255, 255, 0.1);
+      --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-fast: all 0.2s ease;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+    body {
+      background-color: var(--bg-dark-blue);
+      color: var(--text-white);
+      font-family: var(--font-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    ul { list-style: none; }
+
+    .container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* Top Preview Page Switcher */
+    .preview-mode-bar {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      height: 36px;
+      background: #060b13;
+      color: #94a3b8;
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      font-size: 12px;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .preview-tab-btn {
+      padding: 3px 12px;
+      border-radius: 4px;
+      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 11.5px;
+      margin-left: 6px;
+      transition: all 0.2s;
+    }
+    .preview-tab-btn:hover, .preview-tab-btn.active {
+      background: var(--accent-blue);
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    /* =========================================================
+       시온테크 오리지널 헤더 (120px -> 스크롤시 글래스모피즘)
+       ========================================================= */
+    .main-header {
+      position: fixed;
+      top: 36px;
+      left: 0;
+      width: 100%;
+      height: 110px;
+      z-index: 1000;
+      background: transparent;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .main-header.scrolled {
+      height: 80px;
+      background-color: rgba(12, 21, 36, 0.95) !important;
+      backdrop-filter: blur(16px) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4) !important;
+    }
+    .header-container {
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 5% 0 8%;
+    }
+    .logo-area { display: flex; align-items: center; cursor: pointer; }
+    .brand-logo-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px dashed rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+      backdrop-filter: blur(6px);
+    }
+    .brand-logo-badge .logo-title {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #ffffff;
+    }
+    .brand-logo-badge .logo-sub {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-blue);
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+      padding-left: 10px;
+    }
+    .header-right-area {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
+    .nav-menu { display: flex; gap: 46px; }
+    .nav-link {
+      font-size: 18px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.85);
+      transition: var(--transition-fast);
+      position: relative;
+      padding: 8px 0;
+      cursor: pointer;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent-blue);
+      font-weight: 800;
+    }
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; width: 100%; height: 2.5px;
+      background: var(--accent-blue);
+      border-radius: 2px;
+    }
+    .header-hamburger-btn {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 8px;
+    }
+    .hamburger-line {
+      width: 26px; height: 2.2px;
+      background-color: white;
+    }
+
+    /* Page View Containers */
+    .page-view {
+      display: none;
+      min-height: 100vh;
+    }
+    .page-view.active { display: block; }
+
+    /* =========================================================
+       VIEW 1: 메인 화면 (시온테크 100vh 풀스크린 히어로 캐러셀 & 도트 지도)
+       ========================================================= */
+    .hero-carousel-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 650px;
+      overflow: hidden;
+      background-color: #0c1524;
+    }
+    .carousel-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      background-size: cover;
+      background-position: center;
+    }
+    .carousel-slide.active {
+      opacity: 1;
+      visibility: visible;
+      z-index: 2;
+    }
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(7, 16, 30, 0.6) 0%, rgba(7, 16, 30, 0.2) 40%, rgba(7, 16, 30, 0.85) 100%);
+      z-index: 3;
+    }
+    .slide-content-wrapper {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      padding-top: 60px;
+    }
+    .slide-tagline-badge {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--accent-blue);
+      letter-spacing: 2px;
+      background: rgba(43, 130, 230, 0.15);
+      border: 1px solid rgba(43, 130, 230, 0.4);
+      padding: 6px 16px;
+      border-radius: 30px;
+      margin-bottom: 20px;
+    }
+    .slide-title {
+      font-family: var(--font-primary);
+      font-size: clamp(40px, 5.5vw, 68px);
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: -1px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+    .slide-desc {
+      font-size: clamp(16px, 1.8vw, 20px);
+      color: var(--text-muted);
+      max-width: 800px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .slide-actions {
+      display: flex;
+      gap: 18px;
+    }
+    .btn-carousel-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 36px;
+      background-color: var(--accent-blue);
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 700;
+      border-radius: 30px;
+      box-shadow: 0 4px 18px rgba(43, 130, 230, 0.4);
+      transition: all var(--transition-fast);
+    }
+    .btn-carousel-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(43, 130, 230, 0.6);
+      background-color: #1d72d6;
+    }
+    .btn-carousel-cta.outline {
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      box-shadow: none;
+    }
+    .btn-carousel-cta.outline:hover {
+      border-color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Carousel Nav Arrows & Dots */
+    .carousel-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 56px;
+      padding: 20px;
+      transition: var(--transition-fast);
+    }
+    .carousel-nav-btn:hover { color: #ffffff; transform: translateY(-50%) scale(1.1); }
+    .carousel-nav-btn.prev { left: 30px; }
+    .carousel-nav-btn.next { right: 30px; }
+    .carousel-dots {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      gap: 12px;
+    }
+    .carousel-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transition: var(--transition-fast);
+    }
+    .carousel-dot.active {
+      background: #ffffff;
+      width: 28px;
+      border-radius: 6px;
+    }
+
+    /* 2nd Fold: Global Dot Map (시온테크 다크 무드 일치) */
+    .dot-map-section {
+      padding: 120px 0;
+      background: linear-gradient(180deg, #0c1524 0%, #07101e 100%);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .section-header-center {
+      text-align: center;
+      max-width: 840px;
+      margin: 0 auto 50px auto;
+    }
+    .section-badge-top {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--accent-blue);
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+    .section-title-large {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 16px;
+    }
+    .dot-map-canvas-card {
+      position: relative;
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto 40px auto;
+      background: rgba(17, 30, 51, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 28px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      backdrop-filter: blur(12px);
+    }
+    .active-dot {
+      fill: #3b82f6;
+      filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.9));
+    }
+    .active-dot.main-hub {
+      fill: #60a5fa;
+      r: 4.5px;
+      filter: drop-shadow(0 0 10px rgba(96, 165, 250, 1));
+    }
+    .pin-korea-float {
+      position: absolute;
+      top: 35%; left: 63%;
+      transform: translate(-50%, -50%);
+      z-index: 20;
+      cursor: pointer;
+    }
+    .figma-korea-glass {
+      background: rgba(12, 33, 64, 0.92);
+      border: 1.5px solid #2b82e6;
+      border-radius: 14px;
+      padding: 14px 20px;
+      box-shadow: 0 10px 30px rgba(43, 130, 230, 0.4);
+      backdrop-filter: blur(10px);
+    }
+    .glowing-indicator-dot {
+      width: 8px; height: 8px;
+      background: #38bdf8;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #38bdf8;
+      display: inline-block;
+      margin-right: 6px;
+    }
+    .country-tag-pin {
+      position: absolute;
+      cursor: pointer;
+      background: rgba(17, 30, 51, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+      transition: all var(--transition-fast);
+      z-index: 15;
+    }
+    .country-tag-pin:hover, .country-tag-pin.active {
+      background: var(--accent-blue);
+      border-color: var(--accent-blue);
+      box-shadow: 0 8px 24px rgba(43, 130, 230, 0.5);
+      transform: translateY(-2px);
+    }
+    .pin-japan { top: 41%; left: 78%; }
+    .pin-taiwan { top: 59%; left: 60%; }
+    .pin-indonesia { top: 84%; left: 69%; }
+
+    /* =========================================================
+       시온테크 오리지널 서브페이지 레이아웃 (SubpageLayout)
+       ========================================================= */
+    .subpage-container-view {
+      padding-top: calc(110px + 36px);
+      min-height: 100vh;
+      background-color: var(--bg-dark-blue);
+    }
+    .subpage-tabs-bar {
+      position: sticky;
+      top: calc(80px + 36px);
+      z-index: 900;
+      background: rgba(12, 21, 36, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+    }
+    .sub-tabs-inner {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      height: 60px;
+    }
+    .sub-tab-link {
+      font-size: 18px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.6);
+      position: relative;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: color var(--transition-fast);
+    }
+    .sub-tab-link:hover, .sub-tab-link.active {
+      color: #ffffff;
+    }
+    .sub-tab-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; width: 100%; height: 3px;
+      background: var(--accent-blue);
+      box-shadow: 0 -2px 10px var(--accent-blue);
+    }
+
+    /* 100vh Split View */
+    .split-view-wrapper {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      min-height: calc(100vh - 170px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .split-view-wrapper.products-layout {
+      grid-template-columns: 260px 1.2fr 1fr;
+      max-width: 1400px;
+      margin: 40px auto;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      overflow: hidden;
+      background: #091424;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      min-height: 600px;
+    }
+
+    /* Products Left Sidebar */
+    .products-sidebar-drawer {
+      background: #0c1c33;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 36px 24px;
+    }
+    .sidebar-heading {
+      font-size: 19px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent-blue);
+    }
+    .sidebar-btn {
+      width: 100%;
+      text-align: left;
+      padding: 14px 18px;
+      font-size: 16px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.7);
+      border-radius: 10px;
+      margin-bottom: 8px;
+      transition: all var(--transition-fast);
+    }
+    .sidebar-btn:hover, .sidebar-btn.active {
+      background: rgba(43, 130, 230, 0.2);
+      color: #ffffff;
+      border-left: 4px solid var(--accent-blue);
+      font-weight: 700;
+    }
+
+    /* Left Visual Area */
+    .split-left-visual {
+      background: radial-gradient(circle at 40% 50%, #102648 0%, #07101e 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      position: relative;
+    }
+    .visual-graphic-box {
+      width: 100%;
+      max-width: 540px;
+      height: 320px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+    }
+
+    /* Right Details Content */
+    .split-right-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 50px 60px;
+      background: #091322;
+    }
+    .main-page-title {
+      font-size: clamp(32px, 3.5vw, 48px);
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 18px;
+    }
+    .main-page-desc {
+      font-size: 17px;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+    .key-app-panel {
+      padding: 20px 24px;
+      background: rgba(255, 255, 255, 0.04);
+      border-left: 4px solid var(--accent-blue);
+      border-radius: 0 12px 12px 0;
+      margin-bottom: 30px;
+    }
+    .stats-card-row {
+      display: flex;
+      gap: 40px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .stat-val {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--accent-blue);
+    }
+    .stat-lbl {
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 600;
+    }
+
+    /* Extra Section (보유기술 & 계획 프로세스) */
+    .subpage-extra-section {
+      padding: 90px 0;
+      background: #07101e;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .extra-header-line {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .extra-title {
+      font-size: 30px;
+      font-weight: 900;
+      color: #ffffff;
+    }
+    .extra-bar {
+      flex: 1;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* HVAC Diagram Grid */
+    .hvac-grid-four {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr 1fr;
+      gap: 28px;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+    .hvac-point-card {
+      background: #0c1a2e;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    .hvac-point-card .badge {
+      background: rgba(239, 68, 68, 0.2);
+      color: #f87171;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-right: 8px;
+    }
+    .hvac-point-card h4 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+    .hvac-point-card ul li {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 4px;
+    }
+
+    /* Process Flowchart 8 Steps */
+    .flow-eight-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .flow-row-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .flow-step-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .flow-callout-box {
+      background: #0c1a2e;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.5;
+    }
+    .flow-bar-btn {
+      padding: 16px 12px;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 800;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    }
+
+    /* =========================================================
+       VIEW 2: 회사소개 (인사말 & 시온테크 오리지널 조직도)
+       ========================================================= */
+    .about-sec-block {
+      padding: 60px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .about-greeting-card {
+      background: #091322;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 50px;
+      font-size: 17px;
+      line-height: 1.9;
+      color: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    }
+    .org-chart-main-box {
+      background: #091322;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 50px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .org-node-card {
+      background: #0c1a2e;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: all var(--transition-fast);
+    }
+    .org-node-card:hover {
+      border-color: var(--accent-blue);
+      transform: translateY(-4px);
+    }
+    .org-node-head {
+      background: var(--footer-navy);
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 800;
+      padding: 12px 18px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .org-node-body {
+      padding: 16px 20px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    /* =========================================================
+       시온테크 오리지널 푸터 (#103A62)
+       ========================================================= */
+    .main-footer {
+      background-color: var(--footer-navy);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 60px 0 40px 0;
+      color: white;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 2.5fr 1.8fr 1.2fr;
+      gap: 40px;
+    }
+    .footer-col-title {
+      font-family: var(--font-heading);
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--accent-blue);
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .footer-contact-info p {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 8px;
+    }
+    .footer-contact-info p span {
+      font-weight: 800;
+      color: var(--accent-blue);
+      display: inline-block;
+      width: 22px;
+    }
+
+    /* Contrast Rules for Preview */
+    .main-header.scrolled {
+      background-color: rgba(255, 255, 255, 0.98) !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+    }
+    .main-header.scrolled .nav-link {
+      color: #111827 !important;
+      font-weight: 600 !important;
+    }
+    .main-header.scrolled .nav-link:hover,
+    .main-header.scrolled .nav-link.active {
+      color: #2563eb !important;
+      font-weight: 800 !important;
+    }
+    .main-header.scrolled .hamburger-line {
+      background-color: #111827 !important;
+    }
+
+    @media (max-width: 1024px) {
+      .split-view-wrapper { grid-template-columns: 1fr; }
+      .split-view-wrapper.products-layout { grid-template-columns: 1fr; }
+      .hvac-grid-four { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Preview Switcher Bar -->
+  <div class="preview-mode-bar">
+    <span>✨ <strong>(주)미드바르 솔루션</strong> - 시온테크 오리지널 다크 테크 시스템 & 피그마 100% 매핑 뷰어</span>
+    <div>
+      <button class="preview-tab-btn active" onclick="switchPage('home')">메인 첫 화면</button>
+      <button class="preview-tab-btn" onclick="switchPage('about')">회사소개</button>
+      <button class="preview-tab-btn" onclick="switchPage('tech')">핵심기술 (공조)</button>
+      <button class="preview-tab-btn" onclick="switchPage('products')">제품소개 (클린룸)</button>
+    </div>
+  </div>
+
+  <!-- Header (시온테크 오리지널) -->
+  <header class="main-header" id="header-el">
+    <div class="header-container">
+      <div class="logo-area" onclick="switchPage('home')" style="cursor: pointer;">
+        <img
+          src="public/images/logo.svg"
+          alt="MIDBAR SOLUTION"
+          style="height: 64px; width: auto; display: block;"
+        />
+      </div>
+
+      <div class="header-right-area">
+        <nav class="nav-menu">
+          <a class="nav-link" onclick="switchPage('about')" id="nav-about">회사소개</a>
+          <a class="nav-link" onclick="switchPage('tech')" id="nav-tech">핵심기술</a>
+          <a class="nav-link" onclick="switchPage('products')" id="nav-products">제품소개</a>
+          <a class="nav-link" onclick="switchPage('home')">고객지원</a>
+        </nav>
+
+        <button class="header-hamburger-btn" aria-label="메뉴">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       PAGE 1: 메인 화면 (100vh 풀스크린 캐러셀 & 도트 지도)
+       ========================================================= -->
+  <div id="page-home" class="page-view active">
+    <!-- 100vh Hero Carousel -->
+    <div class="hero-carousel-container">
+      <!-- Slide 1: Brand & Slogan -->
+      <div class="carousel-slide active" id="slide-0" style="background-image: linear-gradient(135deg, #0c1a30 0%, #050b15 100%);">
+        <div class="slide-overlay"></div>
+        <div class="container slide-content-wrapper">
+          <div style="text-align: center; max-width: 900px; margin: 0 auto;">
+            <span class="slide-tagline-badge">NEXT MOBILITY & CLIMATE TECH</span>
+            <h1 class="slide-title" style="font-size: clamp(48px, 6vw, 76px);">
+              SEE BEYOND,<br><span style="color: var(--accent-blue);">MIDBAR SOLUTION</span>
+            </h1>
+            <p class="slide-desc" style="margin: 0 auto 40px auto;">
+              (주)미드바르 솔루션은 스마트 냉동공조 제어 시스템과 해양 자율운항 수상드론 기술을 융합하여 혁신적인 미래 산업 생태계를 선도합니다.
+            </p>
+            <div class="slide-actions" style="justify-content: center;">
+              <a onclick="switchPage('tech')" class="btn-carousel-cta">핵심기술</a>
+              <a onclick="switchPage('products')" class="btn-carousel-cta outline">제품소개</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: 스마트 냉동공조 -->
+      <div class="carousel-slide" id="slide-1" style="background-image: radial-gradient(circle at 60% 40%, #102648 0%, #07101e 100%);">
+        <div class="slide-overlay"></div>
+        <div class="container slide-content-wrapper">
+          <span class="slide-tagline-badge">HVAC & REFRIGERATION</span>
+          <h1 class="slide-title">스마트 냉동공조</h1>
+          <p class="slide-desc">
+            정밀 온도 제어와 AI 기반 에너지 효율화로 산업 설비 및 콜드체인 환경을 최적화합니다.
+          </p>
+          <div class="slide-actions">
+            <a onclick="switchPage('tech')" class="btn-carousel-cta">핵심기술</a>
+            <a onclick="switchPage('products')" class="btn-carousel-cta outline">제품소개</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: 자율운항 수상드론 -->
+      <div class="carousel-slide" id="slide-2" style="background-image: radial-gradient(circle at 40% 60%, #0d213e 0%, #060f1c 100%);">
+        <div class="slide-overlay"></div>
+        <div class="container slide-content-wrapper">
+          <span class="slide-tagline-badge">SURFACE DRONE MOBILITY</span>
+          <h1 class="slide-title">해양 자율운항 수상드론</h1>
+          <p class="slide-desc">
+            AI 비전과 고정밀 GPS 자율 항법으로 스마트 항만 순찰 및 해양 환경을 실시간 모니터링합니다.
+          </p>
+          <div class="slide-actions">
+            <a onclick="switchPage('tech')" class="btn-carousel-cta">핵심기술</a>
+            <a onclick="switchPage('products')" class="btn-carousel-cta outline">제품소개</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nav Arrows -->
+      <button class="carousel-nav-btn prev" onclick="prevSlide()">&laquo;</button>
+      <button class="carousel-nav-btn next" onclick="nextSlide()">&raquo;</button>
+
+      <!-- Dots -->
+      <div class="carousel-dots">
+        <button class="carousel-dot active" id="dot-0" onclick="goToSlide(0)"></button>
+        <button class="carousel-dot" id="dot-1" onclick="goToSlide(1)"></button>
+        <button class="carousel-dot" id="dot-2" onclick="goToSlide(2)"></button>
+      </div>
+    </div>
+
+    <!-- 2nd Fold: Global Dot Map (한 화면에 쏙 들어오는 컴팩트 뷰) -->
+    <section class="dot-map-section" style="padding: 60px 0 50px 0; min-height: 100vh; display: flex; flex-direction: column; justify-content: center;">
+      <div class="container" style="max-width: 1200px;">
+        <div class="section-header-center" style="margin-bottom: 24px;">
+          <div class="section-badge-top" style="font-size: 13px; margin-bottom: 6px;">GLOBAL EXPANSION & NETWORK</div>
+          <h2 class="section-title-large" style="font-size: 32px; margin-bottom: 8px;">글로벌 비즈니스 네트워크</h2>
+          <p style="font-size: 15px; color: var(--text-muted); line-height: 1.5; margin: 0 auto; max-width: 700px;">
+            지도 위의 주요 거점(한국, 일본, 대만, 인도네시아)에 마우스를 올리시면 해당 국가명과 주요사업을 확인하실 수 있습니다.
+          </p>
+        </div>
+
+        <div class="dot-map-canvas-card" style="padding: 24px 28px; background: radial-gradient(circle at 55% 45%, #0d1e38 0%, #060e1a 100%); border: 1px solid rgba(255,255,255,0.12); border-radius: 24px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5); overflow: visible;">
+          <div style="position: relative; width: 100%; overflow: visible;">
+            <svg
+              viewBox="0 0 1000 640"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style="width: 100%; max-height: 560px; display: block;"
+            >
+              <defs>
+                <filter id="pro-pin-glow-pv" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+
+              <!-- Latitude / Longitude Grid -->
+              <g stroke="rgba(255, 255, 255, 0.04)" stroke-width="1">
+                <line x1="50" y1="120" x2="950" y2="120" stroke-dasharray="3 6" />
+                <line x1="50" y1="240" x2="950" y2="240" stroke-dasharray="3 6" />
+                <line x1="50" y1="360" x2="950" y2="360" stroke-dasharray="3 6" />
+                <line x1="50" y1="480" x2="950" y2="480" stroke-dasharray="3 6" />
+                <line x1="50" y1="600" x2="950" y2="600" stroke-dasharray="3 6" />
+                <line x1="200" y1="50" x2="200" y2="600" stroke-dasharray="3 6" />
+                <line x1="400" y1="50" x2="400" y2="600" stroke-dasharray="3 6" />
+                <line x1="600" y1="50" x2="600" y2="600" stroke-dasharray="3 6" />
+                <line x1="800" y1="50" x2="800" y2="600" stroke-dasharray="3 6" />
+              </g>
+
+              <!-- Base Continent (Russia Far East & North) -->
+              <path d="M320,40 Q480,35 620,45 Q720,50 820,30 Q910,40 960,80 L960,140 Q900,160 840,140 Q760,110 680,120 Q560,95 440,110 Q360,90 320,40 Z" fill="#112238" stroke="#1d3557" stroke-width="1.2" />
+
+              <!-- Mainland China & East Asia -->
+              <path d="M120,240 Q180,200 280,180 Q360,150 460,160 Q520,170 560,150 Q600,180 570,220 Q540,240 560,260 Q590,260 590,290 Q550,300 520,320 Q540,350 560,370 Q540,410 510,430 Q470,420 440,450 Q480,480 470,510 Q440,510 400,470 Q360,490 300,440 Q250,420 200,430 Q160,380 140,320 Q110,280 120,240 Z" fill="#112238" stroke="#1d3557" stroke-width="1.2" />
+
+              <!-- Indochina & Malay Peninsula -->
+              <path d="M380,440 Q430,440 450,470 Q480,500 465,540 Q445,580 435,630 Q420,620 415,570 Q390,550 375,500 Q360,460 380,440 Z" fill="#112238" stroke="#1d3557" stroke-width="1.2" />
+              <path d="M435,600 Q445,630 460,650 Q450,665 440,655 Q425,630 435,600 Z" fill="#112238" stroke="#1d3557" stroke-width="1.2" />
+
+              <!-- Philippines -->
+              <g fill="#112238" stroke="#1d3557" stroke-width="1.2">
+                <path d="M640,440 Q665,435 675,465 Q660,505 645,495 Q630,465 640,440 Z" />
+                <path d="M660,520 Q685,525 675,550 Q655,545 660,520 Z" />
+                <path d="M660,565 Q690,560 695,600 Q670,615 650,590 Q650,575 660,565 Z" />
+                <path d="M595,510 Q620,535 605,550 Q585,530 595,510 Z" />
+              </g>
+
+              <!-- Core Country 1: KOREA -->
+              <g onmouseenter="showHoverTooltip('korea', '한국', '테스트', '35%', '62.5%')" onmouseleave="hideHoverTooltip()" style="cursor: pointer;">
+                <path d="M590,210 Q630,195 650,215 Q640,240 645,265 Q650,290 640,320 Q630,335 615,325 Q600,310 600,285 Q585,270 590,240 Z" fill="#1a3a6b" stroke="#38bdf8" stroke-width="1.8" />
+                <ellipse cx="605" cy="345" rx="7" ry="4" fill="#2563eb" stroke="#38bdf8" stroke-width="1.2" />
+                <circle cx="665" cy="275" r="2.5" fill="#38bdf8" />
+                <!-- Beacon Pin -->
+                <circle cx="625" cy="285" r="15" fill="rgba(56, 189, 248, 0.25)" />
+                <circle cx="625" cy="285" r="7" fill="#38bdf8" filter="url(#pro-pin-glow-pv)" />
+                <circle cx="625" cy="285" r="3.5" fill="#ffffff" />
+              </g>
+
+              <!-- Core Country 2: JAPAN -->
+              <g onmouseenter="showHoverTooltip('japan', '일본', '테스트', '36%', '77%')" onmouseleave="hideHoverTooltip()" style="cursor: pointer;">
+                <path d="M800,160 Q840,150 860,180 Q845,215 815,205 Q785,185 800,160 Z" fill="#1a3a6b" stroke="#38bdf8" stroke-width="1.8" />
+                <path d="M820,215 Q805,245 770,270 Q735,300 755,320 Q790,320 815,280 Q830,245 820,215 Z" fill="#1a3a6b" stroke="#38bdf8" stroke-width="1.8" />
+                <path d="M740,325 Q765,320 760,345 Q735,345 740,325 Z" fill="#1a3a6b" stroke="#38bdf8" stroke-width="1.5" />
+                <path d="M705,320 Q730,325 725,360 Q700,365 705,320 Z" fill="#1a3a6b" stroke="#38bdf8" stroke-width="1.5" />
+                <circle cx="680" cy="410" r="2.5" fill="#38bdf8" />
+                <!-- Beacon Pin -->
+                <circle cx="770" cy="290" r="15" fill="rgba(56, 189, 248, 0.25)" />
+                <circle cx="770" cy="290" r="7" fill="#38bdf8" filter="url(#pro-pin-glow-pv)" />
+                <circle cx="770" cy="290" r="3.5" fill="#ffffff" />
+              </g>
+
+              <!-- Core Country 3: TAIWAN -->
+              <g onmouseenter="showHoverTooltip('taiwan', '대만', '테스트', '56%', '58%')" onmouseleave="hideHoverTooltip()" style="cursor: pointer;">
+                <path d="M575,420 Q590,425 588,460 Q575,475 568,455 Q565,430 575,420 Z" fill="#1a3a6b" stroke="#38bdf8" stroke-width="1.8" />
+                <!-- Beacon Pin -->
+                <circle cx="580" cy="445" r="15" fill="rgba(56, 189, 248, 0.25)" />
+                <circle cx="580" cy="445" r="7" fill="#38bdf8" filter="url(#pro-pin-glow-pv)" />
+                <circle cx="580" cy="445" r="3.5" fill="#ffffff" />
+              </g>
+
+              <!-- Core Country 4: INDONESIA -->
+              <g onmouseenter="showHoverTooltip('indonesia', '인도네시아', '테스트', '78%', '48%')" onmouseleave="hideHoverTooltip()" style="cursor: pointer;">
+                <path d="M340,540 Q390,580 430,650 Q410,660 360,595 Q330,555 340,540 Z" fill="#1a3a6b" stroke="#38bdf8" stroke-width="1.8" />
+                <path d="M420,665 Q510,670 580,685 Q570,700 480,695 Q425,685 420,665 Z" fill="#1a3a6b" stroke="#38bdf8" stroke-width="1.8" />
+                <path d="M465,550 Q540,555 545,615 Q490,630 460,590 Q455,565 465,550 Z" fill="#1a3a6b" stroke="#38bdf8" stroke-width="1.8" />
+                <path d="M575,560 Q615,555 605,600 Q620,630 595,640 Q580,610 585,585 Q565,575 575,560 Z" fill="#1a3a6b" stroke="#38bdf8" stroke-width="1.8" />
+                <ellipse cx="595" cy="695" rx="6" ry="3" fill="#38bdf8" />
+                <ellipse cx="615" cy="698" rx="7" ry="3" fill="#38bdf8" />
+                <!-- Beacon Pin -->
+                <circle cx="480" cy="630" r="15" fill="rgba(56, 189, 248, 0.25)" />
+                <circle cx="480" cy="630" r="7" fill="#38bdf8" filter="url(#pro-pin-glow-pv)" />
+                <circle cx="480" cy="630" r="3.5" fill="#ffffff" />
+              </g>
+            </svg>
+
+            <!-- Floating Tooltip Container (절대 안 잘리도록 z-index 100 설정) -->
+            <div id="vector-tooltip" style="position: absolute; display: none; z-index: 100; pointer-events: none; transform: translate(-50%, -125%); white-space: nowrap;">
+              <div style="background: rgba(8, 19, 38, 0.98); border: 1.5px solid #38bdf8; border-radius: 12px; padding: 11px 20px; box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(56, 189, 248, 0.4); backdrop-filter: blur(16px); text-align: center;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 3px;">
+                  <span style="width: 8px; height: 8px; background: #38bdf8; border-radius: 50%; box-shadow: 0 0 10px #38bdf8;"></span>
+                  <strong id="tooltip-country-name" style="font-size: 18px; font-weight: 800; color: #ffffff;">한국</strong>
+                </div>
+                <div id="tooltip-biz-name" style="font-size: 13.5px; font-weight: 700; color: #93c5fd; background: rgba(56, 189, 248, 0.15); padding: 4px 12px; border-radius: 6px; margin-top: 4px;">
+                  주요사업: 테스트
+                </div>
+              </div>
+              <div style="width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent; border-top: 8px solid #38bdf8; margin: 0 auto;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- =========================================================
+       PAGE 2: 회사소개 (시온테크 오리지널 인사말 & 조직도)
+       ========================================================= -->
+  <div id="page-about" class="page-view">
+    <div class="subpage-container-view">
+      <div class="container" style="padding-bottom: 80px;">
+        <!-- 인사말 -->
+        <div class="about-sec-block">
+          <div style="font-size: 14px; font-weight: 800; color: var(--accent-blue); margin-bottom: 8px;">회사소개 &gt;</div>
+          <h1 class="main-page-title" style="margin-bottom: 30px;">인사말</h1>
+          <div class="about-greeting-card">
+            <p style="margin-bottom: 16px;">
+              (주)미드바르 솔루션은 고효율 스마트 냉동공조 인프라와 첨단 해양 자율운항 수상드론 기술을 융합하여, 
+              산업 및 해양 환경의 미래 지향적 자동화와 환경 최적화를 실현하는 기술 혁신 기업입니다.
+            </p>
+            <p style="margin-bottom: 16px;">
+              저희는 공조 설비의 정밀 환경 제어 및 에너지 절감 솔루션부터, 
+              실시간 해양 수질·환경 모니터링 및 스마트 항만 자율순찰 드론까지 
+              현장 중심의 실용적이고 신뢰할 수 있는 토탈 엔지니어링을 제공합니다.
+            </p>
+            <div style="display: flex; justify-content: flex-end; margin-top: 30px;">
+              <div class="brand-logo-badge">
+                <span class="logo-title">MIDBAR</span>
+                <span class="logo-sub">미드바르 솔루션</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 조직도 -->
+        <div class="about-sec-block" style="border-bottom: none;">
+          <div style="font-size: 14px; font-weight: 800; color: var(--accent-blue); margin-bottom: 8px;">회사소개 &gt;</div>
+          <h1 class="main-page-title" style="margin-bottom: 30px;">조직도</h1>
+          <div class="org-chart-main-box">
+            <!-- CEO -->
+            <div class="org-node-card" style="width: 300px; margin-bottom: 50px;">
+              <div class="org-node-head">대표이사</div>
+              <div class="org-node-body">
+                <ul>
+                  <li>• 경영 총괄 및 사업 전략 수립</li>
+                  <li>• 대외 영업, 고객사 기술 상담 및 파트너십 구축</li>
+                  <li>• 인사, 재무, 행정 업무 관리</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- 4 Teams Grid -->
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 100%;">
+              <div class="org-node-card">
+                <div class="org-node-head">연구개발팀</div>
+                <div class="org-node-body">
+                  <ul>
+                    <li>• 항온항습기 / 챔버</li>
+                    <li>• 특수장비 / F.A 자동화</li>
+                    <li>• 제품개선 / 연구개발</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="org-node-card">
+                <div class="org-node-head">설계영업팀</div>
+                <div class="org-node-body">
+                  <ul>
+                    <li>• 견적 / 상담</li>
+                    <li>• 설계 / 시공</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="org-node-card">
+                <div class="org-node-head">생산관리팀</div>
+                <div class="org-node-body">
+                  <ul>
+                    <li>• 제품제작</li>
+                    <li>• 재고관리</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="org-node-card">
+                <div class="org-node-head">경영지원팀</div>
+                <div class="org-node-body">
+                  <ul>
+                    <li>• 인사관리</li>
+                    <li>• 회계관리</li>
+                    <li>• 구매발주</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       PAGE 3: 핵심기술 (Smart 공조 시스템 & 4대 포인트 & 계획 프로세스)
+       ========================================================= -->
+  <div id="page-tech" class="page-view">
+    <div class="subpage-container-view">
+      <!-- Sub-tabs bar -->
+      <div class="subpage-tabs-bar">
+        <div class="container sub-tabs-inner">
+          <span class="sub-tab-link active">냉동 공조</span>
+          <span class="sub-tab-link">수상 드론</span>
+          <span class="sub-tab-link">AI</span>
+        </div>
+      </div>
+
+      <!-- 100vh Split View -->
+      <div class="split-view-wrapper">
+        <div class="split-left-visual">
+          <div class="visual-graphic-box">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.5" style="margin-bottom: 16px;">
+              <rect x="2" y="3" width="20" height="18" rx="2"></rect>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+              <line x1="12" y1="8" x2="12" y2="16"></line>
+            </svg>
+            <strong style="font-size: 18px; color: #fff;">Smart 공조 시스템 실물 유닛</strong>
+            <span style="font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 6px;">(1440 × 165 규격 고성능 인프라)</span>
+          </div>
+        </div>
+
+        <div class="split-right-content">
+          <h1 class="main-page-title">Smart 공조 시스템</h1>
+          <p class="main-page-desc">
+            공조기의 팬 &amp; 진동 이상, 필터 차압, 코일 동작을 실시간 감시하고 분석하여 장비의 상태 및 결함을 진단
+          </p>
+          <div class="stats-card-row">
+            <div>
+              <div class="stat-val">99.97%</div>
+              <div class="stat-lbl">초미세 입자 제거 효율</div>
+            </div>
+            <div>
+              <div class="stat-val">ISO Class 5</div>
+              <div class="stat-lbl">글로벌 청정도 표준 달성</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 보유기술 4대 포인트 다이어그램 -->
+      <section class="subpage-extra-section">
+        <div class="container">
+          <div class="extra-header-line">
+            <h2 class="extra-title">보유기술</h2>
+            <div class="extra-bar"></div>
+          </div>
+
+          <div class="hvac-grid-four">
+            <!-- 1 -->
+            <div class="hvac-point-card">
+              <h4><span class="badge">01</span>팬&amp;모터 진동 감지</h4>
+              <ul>
+                <li>• 3축 가속도 측정</li>
+                <li>• 팬 진동 상태 감시, 이상 진동 경보 전송</li>
+              </ul>
+            </div>
+
+            <!-- Center Graphic Unit -->
+            <div style="background: #091424; border: 2px solid #3b82f6; border-radius: 16px; padding: 30px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px;">
+                <div style="background: #11223b; height: 100px; border-radius: 8px; border: 1px solid #3b82f6;"></div>
+                <div style="background: #11223b; height: 100px; border-radius: 8px; border: 1px solid #3b82f6;"></div>
+                <div style="background: #11223b; height: 100px; border-radius: 8px; border: 1px solid #3b82f6;"></div>
+                <div style="background: #11223b; height: 100px; border-radius: 8px; border: 1px solid #3b82f6;"></div>
+              </div>
+              <strong style="color: #60a5fa; font-size: 15px;">Smart 공조기 핵심 센서 연동 모듈</strong>
+            </div>
+
+            <!-- 2 -->
+            <div class="hvac-point-card">
+              <h4><span class="badge">02</span>필터 차압 이상 감지</h4>
+              <ul>
+                <li>• 필터 전,후 차압 감시</li>
+                <li>• 높은 차압 발생시 필터 교체 경보 전송</li>
+              </ul>
+            </div>
+
+            <!-- 3 -->
+            <div class="hvac-point-card">
+              <h4><span class="badge">03</span>코일 온도 제어</h4>
+              <ul>
+                <li>• 코일 온도 측정 및 펌프 제어</li>
+                <li>• 코일 온도 감시, 동파 위험 시 순환 펌프 자동 기동</li>
+              </ul>
+            </div>
+
+            <div></div>
+
+            <!-- 4 -->
+            <div class="hvac-point-card">
+              <h4><span class="badge">04</span>Central Module</h4>
+              <ul>
+                <li>• 진동, 차압, 온도 Data 수집</li>
+                <li>• 입,출력 통신 변환 기능</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 계획 프로세스 8단계 -->
+          <div class="extra-header-line">
+            <h2 class="extra-title">계획 프로세스</h2>
+            <div class="extra-bar"></div>
+          </div>
+
+          <div class="flow-eight-container">
+            <!-- Row Top 1~4 -->
+            <div class="flow-row-grid">
+              <div class="flow-step-item">
+                <div class="flow-callout-box">• 요구조건 청정도<br>• 제품의 온습도 특성</div>
+                <div class="flow-bar-btn" style="background: #475569;">청정도 및 온습도의 결정</div>
+              </div>
+              <div class="flow-step-item">
+                <div style="height: 52px;"></div>
+                <div class="flow-bar-btn" style="background: #0284c7;">작업내용과 사용기계의 분석</div>
+              </div>
+              <div class="flow-step-item">
+                <div style="height: 52px;"></div>
+                <div class="flow-bar-btn" style="background: #2563eb;">작업 Layout</div>
+              </div>
+              <div class="flow-step-item">
+                <div class="flow-callout-box">• 내진<br>• 방화</div>
+                <div class="flow-bar-btn" style="background: #1e3a8a;">입지조건과 건축구조</div>
+              </div>
+            </div>
+
+            <!-- Row Bottom 8~5 -->
+            <div class="flow-row-grid">
+              <div class="flow-step-item">
+                <div class="flow-bar-btn" style="background: #dc2626;">품질관리</div>
+              </div>
+              <div class="flow-step-item">
+                <div class="flow-bar-btn" style="background: #701a75;">보수 · 관리</div>
+                <div class="flow-callout-box">• 청소방법 / Monitoring / 교육</div>
+              </div>
+              <div class="flow-step-item">
+                <div class="flow-bar-btn" style="background: #0d9488;">사양서의 작성</div>
+              </div>
+              <div class="flow-step-item">
+                <div class="flow-callout-box">• 경제적 평가 • 소음 • Layout 변경 고려</div>
+                <div class="flow-bar-btn" style="background: #059669;">설비의 선정</div>
+                <div class="flow-callout-box">• 전동/배기/배선/배관 • 분해대책/정전기</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       PAGE 4: 제품소개 (시온테크 오리지널 제품 카드 레이아웃)
+       ========================================================= -->
+  <div id="page-products" class="page-view">
+    <div class="subpage-container-view">
+      <!-- Sub-tabs bar -->
+      <div class="subpage-tabs-bar">
+        <div class="container sub-tabs-inner">
+          <span class="sub-tab-link active">냉동 공조</span>
+          <span class="sub-tab-link">수상 드론</span>
+          <span class="sub-tab-link">AI</span>
+        </div>
+      </div>
+
+      <!-- Split Layout with Left Product Sidebar -->
+      <div class="split-view-wrapper products-layout">
+        <aside class="products-sidebar-drawer">
+          <h3 class="sidebar-heading">제품 리스트</h3>
+          <button class="sidebar-btn active" id="btn-clean" onclick="selectProductTab('clean')">클린룸</button>
+          <button class="sidebar-btn" id="btn-thermo" onclick="selectProductTab('thermo')">항온 항습기</button>
+        </aside>
+
+        <!-- Product Image Area -->
+        <div class="split-left-visual" onclick="alert('고해상도 라이트박스 줌 모달이 열립니다.')" style="cursor: pointer;">
+          <div class="visual-graphic-box">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.5" style="margin-bottom: 14px;">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            </svg>
+            <strong id="p-img-label" style="font-size: 18px; color: #fff;">클린룸 첨단 생산 설비 이미지</strong>
+            <span style="font-size: 12px; color: var(--accent-blue); margin-top: 8px;">(클릭하여 이미지 확대 확인)</span>
+          </div>
+        </div>
+
+        <!-- Product Text Content -->
+        <div class="split-right-content">
+          <h1 class="main-page-title" id="p-title">클린룸</h1>
+          <p class="main-page-desc" id="p-desc">
+            공기중의 부유 미립자가 규정된 청정도 이하로 관리되고, 또한 그 공간에 공급되는 재료, 약품, 물 등에 대해서도 요구되는 청정도가 유지되며, 필요에 따라서 온도/습도/압력 등의 환경조건에 대해서도 관리가 되는 공간
+          </p>
+
+          <div class="key-app-panel">
+            <h4 style="font-size: 16px; font-weight: 800; color: #ffffff; margin-bottom: 8px;">핵심 사용처</h4>
+            <ul id="p-apps" style="font-size: 15px; color: rgba(255, 255, 255, 0.8);">
+              <li>• 바이오 클린룸</li>
+              <li>• 산업용 클린룸</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer (시온테크 #103A62) -->
+  <footer class="main-footer">
+    <div class="container footer-grid">
+      <div>
+        <div style="margin-bottom: 14px; cursor: pointer;" onclick="switchPage('home')">
+          <img
+            src="public/images/logo.svg"
+            alt="MIDBAR SOLUTION"
+            style="height: 56px; width: auto; display: block;"
+          />
+        </div>
+        <p style="font-size: 12px; color: rgba(255,255,255,0.6);">&copy; 2026 (주) 미드바르 솔루션 All Rights Reserved.</p>
+      </div>
+
+      <div>
+        <h3 class="footer-col-title">SLOGAN</h3>
+        <p style="font-size: 15px; font-weight: 700; color: #93c5fd; margin-bottom: 6px;">SEE BEYOND, MIDBAR SOLUTION</p>
+        <p style="font-size: 13.5px; color: rgba(255,255,255,0.6); line-height: 1.6;">
+          (주)미드바르 솔루션은 스마트 냉동공조 인프라와 자율운항 수상드론 기술을 융합하여 혁신적인 미래 산업 가치를 창출합니다.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="footer-col-title">CONTACT</h3>
+        <div class="footer-contact-info">
+          <p><span>T</span> 051-123-1234</p>
+          <p><span>F</span> 051-123-1234</p>
+          <p><span>E</span> 123@midbarsolution.com</p>
+          <p><span>A</span> 부산 강서구 명지</p>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="footer-col-title">CORPORATE</h3>
+        <div class="footer-contact-info">
+          <p><span>사업자</span> 123-45-67890</p>
+          <p><a href="#" style="color: #93c5fd; text-decoration: underline;">개인정보처리방침</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts for Preview -->
+  <script>
+    let currentSlide = 0;
+    const totalSlides = 3;
+
+    function goToSlide(idx) {
+      currentSlide = idx;
+      for (let i = 0; i < totalSlides; i++) {
+        const slide = document.getElementById('slide-' + i);
+        const dot = document.getElementById('dot-' + i);
+        if (slide) slide.classList.toggle('active', i === idx);
+        if (dot) dot.classList.toggle('active', i === idx);
+      }
+    }
+
+    function nextSlide() {
+      goToSlide((currentSlide + 1) % totalSlides);
+    }
+    function prevSlide() {
+      goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+    }
+
+    function switchPage(pageId) {
+      document.querySelectorAll('.page-view').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.preview-tab-btn').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
+
+      const target = document.getElementById('page-' + pageId);
+      if (target) target.classList.add('active');
+
+      const btn = Array.from(document.querySelectorAll('.preview-tab-btn')).find(b => b.getAttribute('onclick')?.includes(pageId));
+      if (btn) btn.classList.add('active');
+
+      const navLink = document.getElementById('nav-' + pageId);
+      if (navLink) navLink.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    const prodInfo = {
+      clean: {
+        title: '클린룸',
+        desc: '공기중의 부유 미립자가 규정된 청정도 이하로 관리되고, 또한 그 공간에 공급되는 재료, 약품, 물 등에 대해서도 요구되는 청정도가 유지되며, 필요에 따라서 온도/습도/압력 등의 환경조건에 대해서도 관리가 되는 공간',
+        apps: ['• 바이오 클린룸', '• 산업용 클린룸']
+      },
+      thermo: {
+        title: '항온 항습기',
+        desc: '정밀한 온·습도 유지가 필수적인 전산실, 데이터센터, 정밀 측정실 및 바이오 생산 라인을 위한 24시간 365일 무중단 정밀 공조 시스템',
+        apps: ['• 데이터센터 / 전산실', '• 정밀 측정실 / 연구소', '• 제약 / 바이오 생산 라인']
+      }
+    };
+
+    function selectProductTab(key) {
+      const p = prodInfo[key];
+      if (!p) return;
+      document.getElementById('p-title').innerText = p.title;
+      document.getElementById('p-desc').innerText = p.desc;
+      document.getElementById('p-img-label').innerText = p.title + ' 첨단 설비 이미지';
+
+      const ul = document.getElementById('p-apps');
+      ul.innerHTML = '';
+      p.apps.forEach(a => {
+        const li = document.createElement('li');
+        li.innerText = a;
+        ul.appendChild(li);
+      });
+
+      document.getElementById('btn-clean').classList.toggle('active', key === 'clean');
+      document.getElementById('btn-thermo').classList.toggle('active', key === 'thermo');
+    }
+
+    function showHoverTooltip(id, country, biz, top, left) {
+      const tooltip = document.getElementById('vector-tooltip');
+      const countryEl = document.getElementById('tooltip-country-name');
+      const bizEl = document.getElementById('tooltip-biz-name');
+      if (tooltip && countryEl && bizEl) {
+        countryEl.innerText = country;
+        bizEl.innerText = '주요사업: ' + biz;
+        tooltip.style.top = top;
+        tooltip.style.left = left;
+        tooltip.style.display = 'block';
+      }
+      showMapInfo(country, biz);
+    }
+
+    function hideHoverTooltip() {
+      const tooltip = document.getElementById('vector-tooltip');
+      if (tooltip) {
+        tooltip.style.display = 'none';
+      }
+    }
+
+    function selectVectorMap(id, country, biz) {
+      showMapInfo(country, biz);
+    }
+
+    function showMapInfo(country, biz) {
+      const titleEl = document.getElementById('map-info-title');
+      const bizEl = document.getElementById('map-info-biz');
+      if (titleEl) titleEl.innerText = country;
+      if (bizEl) bizEl.innerText = biz;
+    }
+
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header-el');
+      if (window.scrollY > 30) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>
