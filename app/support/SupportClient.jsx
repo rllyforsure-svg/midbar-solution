@@ -185,16 +185,6 @@ export default function SupportClient() {
                   />
                   <span>클린룸 / 항온항습기</span>
                 </label>
-                <label className="checkbox-item">
-                  <input 
-                    type="checkbox" 
-                    name="interest" 
-                    value="ai" 
-                    checked={formData.interests.includes('ai')} 
-                    onChange={handleCheckboxChange} 
-                  />
-                  <span>AI 지능형 관제 솔루션</span>
-                </label>
               </div>
             </div>
 
