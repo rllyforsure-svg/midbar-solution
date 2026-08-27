@@ -79,10 +79,11 @@ export default function AboutClient() {
             </p>
 
             <div className="about-message-logo">
-              <div className="brand-logo-badge" style={{ background: 'rgba(255, 255, 255, 0.1)', borderColor: 'rgba(255, 255, 255, 0.3)' }}>
-                <span className="logo-title" style={{ fontSize: '20px' }}>MIDBAR</span>
-                <span className="logo-sub">미드바르 솔루션</span>
-              </div>
+              <img
+                src="/images/logo-white.svg"
+                alt="MIDBAR SOLUTION"
+                style={{ height: '36px', width: 'auto', display: 'block' }}
+              />
             </div>
           </div>
         </div>

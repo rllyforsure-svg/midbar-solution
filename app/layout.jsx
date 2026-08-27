@@ -36,9 +36,9 @@ export default function RootLayout({ children }) {
               <div className="footer-col brand-logo-col">
                 <Link href="/" style={{ display: 'inline-block', textDecoration: 'none' }}>
                   <img
-                    src="/images/logo.svg"
+                    src="/images/logo-white.svg"
                     alt="MIDBAR SOLUTION"
-                    style={{ height: '56px', width: 'auto', display: 'block' }}
+                    style={{ height: '38px', width: 'auto', display: 'block' }}
                   />
                 </Link>
               </div>

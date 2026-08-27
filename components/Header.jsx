@@ -63,7 +63,7 @@ export default function Header() {
                 src="/images/logo.svg"
                 alt="MIDBAR SOLUTION"
                 className="header-logo-img"
-                style={{ height: '64px', width: 'auto', display: 'block' }}
+                style={{ height: '42px', width: 'auto', display: 'block' }}
               />
             </Link>
           </div>
@@ -99,7 +99,7 @@ export default function Header() {
             <img
               src="/images/logo.svg"
               alt="MIDBAR SOLUTION"
-              style={{ height: '48px', width: 'auto', display: 'block' }}
+              style={{ height: '36px', width: 'auto', display: 'block' }}
             />
           </Link>
           <button className="sidebar-close-btn" onClick={closeSidebar} aria-label="Close menu">
