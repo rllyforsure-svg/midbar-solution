@@ -4972,7 +4972,7 @@ h1, h2, h3, h4, h5, h6,
   background-color: #071120;
   background-image: url('/images/tech-hvac-main.jpg');
   background-position: right center;
-  background-size: cover;
+  background-size: auto 100%;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
