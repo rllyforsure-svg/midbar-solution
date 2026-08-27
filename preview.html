@@ -4,16 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>(주)미드바르 솔루션 - 스마트 냉동공조 & 해양 자율운항 수상드론</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     /* =========================================================
        시온테크 오리지널 테마 변수 및 글로벌 CSS 100% 매핑
        ========================================================= */
     :root {
-      --font-primary: 'Inter', 'Noto Sans KR', sans-serif;
-      --font-heading: 'Outfit', sans-serif;
+      --font-primary: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', sans-serif;
+      --font-heading: 'Montserrat', 'Pretendard', sans-serif;
       --bg-dark-blue: #0c1524;
       --bg-midnight: #07101e;
       --footer-navy: #103A62;
@@ -32,9 +33,26 @@
       background-color: var(--bg-dark-blue);
       color: var(--text-white);
       font-family: var(--font-primary);
+      font-weight: 600; /* 본문 Pretendard SemiBold */
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+    }
+    p, span, li, label, input, textarea, td, th {
+      font-family: var(--font-primary);
+      font-weight: 600; /* 본문 Pretendard SemiBold */
+    }
+    h1, h2, h3, h4, h5, h6,
+    .slide-title,
+    .section-title-large,
+    .main-page-title,
+    .footer-col-title,
+    .slide-tagline-badge,
+    .section-badge-top,
+    .nav-link,
+    .btn-carousel-cta {
+      font-family: var(--font-heading);
+      font-weight: 700; /* 제목 Montserrat Bold */
     }
     a { color: inherit; text-decoration: none; }
     button { font-family: inherit; cursor: pointer; border: none; background: none; }

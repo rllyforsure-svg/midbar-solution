@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&display=swap');
 
 /* --- 테마 설정 및 CSS 변수 --- */
 :root {
-  --font-primary: 'Inter', 'Noto Sans KR', sans-serif;
-  --font-heading: 'Outfit', sans-serif;
+  --font-primary: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  --font-heading: 'Montserrat', 'Pretendard', sans-serif;
 
   /* HSL 기반 색상 매핑 (AION 테마) */
   --bg-dark-blue: 212 75% 18%;
@@ -30,9 +31,32 @@ body {
   background-color: #0c1524;
   color: hsl(var(--text-white));
   font-family: var(--font-primary);
+  font-weight: 600; /* 본문 Pretendard SemiBold 기본 적용 */
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+p, span, li, label, input, textarea, td, th {
+  font-family: var(--font-primary);
+  font-weight: 600; /* 본문 Pretendard SemiBold */
+}
+
+h1, h2, h3, h4, h5, h6,
+.font-heading,
+.slide-title,
+.section-title-large,
+.main-page-title,
+.about-section-title,
+.support-section-title,
+.footer-col-title,
+.slide-tagline-badge,
+.section-badge-top,
+.nav-link,
+.subpage-tab-btn,
+.btn-carousel-cta {
+  font-family: var(--font-heading);
+  font-weight: 700; /* 제목 Montserrat Bold 적용 */
 }
 
 .container {
