@@ -66,51 +66,318 @@ h1, h2, h3, h4, h5, h6,
   padding: 0 40px;
 }
 
-/* --- 헤더 스타일 (AION 오버레이 스타일) --- */
+/* --- 헤더 스타일 (화이트 테마 100% 매칭) --- */
 .main-header {
   position: fixed;
-  /* absolute에서 fixed로 변경하여 상단바 항시 고정 */
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  /* 서랍 및 모달 레이어 정렬을 위해 1000으로 보강 */
-  background: transparent;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background: #ffffff !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 홈 화면 스크롤 시 유리모핑 흰색 헤더 스타일 */
-.main-header.scrolled {
-  background-color: rgba(255, 255, 255, 0.96) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03) !important;
+.main-header .nav-link {
+  color: #0f2851 !important; /* 모형 이미지와 동일한 네이비 딥블랙 폰트 */
+  font-weight: 700 !important;
 }
 
-.main-header.scrolled .nav-link {
-  color: #111111 !important;
-}
-
-.main-header.scrolled .nav-link:hover {
+.main-header .nav-link:hover,
+.main-header .nav-link.active {
   color: #2b82e6 !important;
 }
 
-.main-header.scrolled .hamburger-line {
-  background-color: #111111 !important;
+.main-header .hamburger-line {
+  background-color: #0f2851 !important;
 }
 
 .header-container {
-  height: 120px;
-  /* 150px에서 120px로 완충 조정 (중간값) */
+  height: 90px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   max-width: none;
-  padding: 0 5% 0 10%;
-  /* 좌측 여백은 10% 유지, 우측 여백만 5%로 줄여서 햄버거 메뉴를 우측에 가깝게 배치 */
+  padding: 0 5% 0 6%;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo-img {
+  height: 52px;
+  width: auto;
+  display: block;
+}
+
+/* =========================================================
+   [HERO SPLIT INTERACTIVE SECTION]
+   냉동공조 (좌측) vs 수상드론 (우측) 호버 인터랙션
+   - 좌측 호버 시: 우측 수상드론은 단색으로 가려짐
+   - 우측 호버 시: 좌측 냉동공조는 단색으로 가려짐
+   ========================================================= */
+
+.hero-split-wrapper {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 90px);
+  min-height: 600px;
+  margin-top: 90px;
+  position: relative;
+  overflow: hidden;
+  background-color: #071220;
+}
+
+.hero-split-panel {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+  cursor: pointer;
+  transition: flex 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+}
+
+.panel-click-layer {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-decoration: none;
+}
+
+/* Background Image */
+.panel-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+  z-index: 1;
+}
+
+.bg-hvac {
+  background-image: url('/images/hero-split-hvac.jpg');
+}
+
+.bg-drone {
+  background-image: url('/images/hero-split-drone.jpg');
+}
+
+/* Solid Color Dim Overlay (상대방 호버 시 단색으로 칠해져 이미지가 완전히 안보임) */
+.panel-solid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #08182b; /* 단색 네이비 */
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Center Gradient Blend (중앙 자연스러운 그라데이션 전환) */
+.panel-center-gradient {
+  position: absolute;
+  top: 0;
+  width: 45%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.left-grad {
+  right: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(8, 24, 43, 0.4) 40%, rgba(8, 24, 43, 0.95) 100%);
+}
+
+.right-grad {
+  left: 0;
+  background: linear-gradient(270deg, transparent 0%, rgba(8, 24, 43, 0.4) 40%, rgba(8, 24, 43, 0.95) 100%);
+}
+
+/* Text Content Overlay */
+.panel-content {
+  position: absolute;
+  z-index: 10;
+  padding: 40px 60px;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.left-content {
+  left: 8%;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.right-content {
+  right: 8%;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.panel-badge {
+  font-family: var(--font-heading);
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  padding: 4px 14px;
+  border-radius: 20px;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+  display: inline-block;
+  backdrop-filter: blur(8px);
+}
+
+.panel-title {
+  font-family: var(--font-heading);
+  font-size: clamp(40px, 4.5vw, 64px);
+  font-weight: 900;
+  color: #ffffff;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.8), 0 0 10px rgba(43, 130, 230, 0.5);
+  margin-bottom: 14px;
+  letter-spacing: -0.5px;
+}
+
+.panel-desc {
+  font-size: clamp(14px, 1.2vw, 17px);
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 380px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.panel-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 800;
+  color: #ffffff;
+  background: #2b82e6;
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(43, 130, 230, 0.5);
+  transition: all 0.3s ease;
+}
+
+.panel-cta-btn .arrow {
+  transition: transform 0.3s ease;
+}
+
+.panel-cta-btn:hover .arrow {
+  transform: translateX(5px);
+}
+
+/* =========================================================
+   [HOVER STATES INTERACTION]
+   ========================================================= */
+
+/* 1. 호버된 패널 (Expanded) */
+.hero-split-panel.is-expanded {
+  flex: 1.4;
+}
+
+.hero-split-panel.is-expanded .panel-bg-image {
+  transform: scale(1.06);
+}
+
+.hero-split-panel.is-expanded .panel-center-gradient {
+  opacity: 0.3;
+}
+
+.hero-split-panel.is-expanded .panel-title {
+  color: #ffffff;
+  text-shadow: 0 0 30px rgba(56, 189, 248, 0.8), 0 4px 20px rgba(0,0,0,0.9);
+}
+
+.hero-split-panel.is-expanded .panel-cta-btn {
+  background: #1d4ed8;
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.7);
+  transform: translateY(-2px);
+}
+
+/* 2. 반대편 패널 (Solid Hidden - 단색으로 칠해지고 이미지 안보임) */
+.hero-split-panel.is-solid-hidden {
+  flex: 0.6;
+}
+
+.hero-split-panel.is-solid-hidden .panel-solid-overlay {
+  opacity: 1 !important; /* 단색 오버레이 100% 활성화 */
+}
+
+.hero-split-panel.is-solid-hidden .panel-bg-image {
+  opacity: 0 !important; /* 이미지 완전 숨김 */
+}
+
+.hero-split-panel.is-solid-hidden .panel-content {
+  opacity: 0.15; /* 텍스트 매우 희미하게 */
+  transform: translateY(-50%) scale(0.88);
+  pointer-events: none;
+}
+
+.hero-split-panel.is-solid-hidden .panel-center-gradient {
+  opacity: 0;
+}
+
+/* 반응형 태블릿 / 모바일 세로 배치 */
+@media (max-width: 900px) {
+  .hero-split-wrapper {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .hero-split-panel {
+    min-height: 50vh;
+    flex: none !important;
+    width: 100%;
+  }
+
+  .panel-center-gradient {
+    width: 100%;
+    height: 40%;
+  }
+
+  .left-grad {
+    top: auto;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(8, 24, 43, 0.9) 100%);
+  }
+
+  .right-grad {
+    top: 0;
+    left: 0;
+    background: linear-gradient(0deg, transparent 0%, rgba(8, 24, 43, 0.9) 100%);
+  }
+
+  .left-content,
+  .right-content {
+    left: 6% !important;
+    right: auto !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    padding: 30px 20px;
+  }
 }
 
 .logo-area {

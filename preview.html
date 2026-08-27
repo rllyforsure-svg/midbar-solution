@@ -768,22 +768,202 @@
       width: 22px;
     }
 
-    /* Contrast Rules for Preview */
-    .main-header.scrolled {
-      background-color: rgba(255, 255, 255, 0.98) !important;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+    /* =========================================================
+       [HERO SPLIT INTERACTIVE SECTION]
+       ========================================================= */
+    .hero-split-wrapper {
+      display: flex;
+      width: 100%;
+      height: calc(100vh - 90px);
+      min-height: 600px;
+      margin-top: 90px;
+      position: relative;
+      overflow: hidden;
+      background-color: #071220;
     }
-    .main-header.scrolled .nav-link {
-      color: #111827 !important;
-      font-weight: 600 !important;
+
+    .hero-split-panel {
+      position: relative;
+      flex: 1;
+      height: 100%;
+      overflow: hidden;
+      cursor: pointer;
+      transition: flex 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .main-header.scrolled .nav-link:hover,
-    .main-header.scrolled .nav-link.active {
-      color: #2563eb !important;
-      font-weight: 800 !important;
+
+    .panel-click-layer {
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      text-decoration: none;
     }
-    .main-header.scrolled .hamburger-line {
-      background-color: #111827 !important;
+
+    .panel-bg-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1;
+    }
+
+    .bg-hvac {
+      background-image: url('public/images/hero-split-hvac.jpg');
+    }
+
+    .bg-drone {
+      background-image: url('public/images/hero-split-drone.jpg');
+    }
+
+    .panel-solid-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #08182b;
+      opacity: 0;
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .panel-center-gradient {
+      position: absolute;
+      top: 0;
+      width: 45%;
+      height: 100%;
+      z-index: 3;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    .left-grad {
+      right: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(8, 24, 43, 0.4) 40%, rgba(8, 24, 43, 0.95) 100%);
+    }
+
+    .right-grad {
+      left: 0;
+      background: linear-gradient(270deg, transparent 0%, rgba(8, 24, 43, 0.4) 40%, rgba(8, 24, 43, 0.95) 100%);
+    }
+
+    .panel-content {
+      position: absolute;
+      z-index: 10;
+      padding: 40px 60px;
+      display: flex;
+      flex-direction: column;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .left-content {
+      left: 8%;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .right-content {
+      right: 8%;
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    .panel-badge {
+      font-family: var(--font-heading);
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 4px 14px;
+      border-radius: 20px;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .panel-title {
+      font-family: var(--font-heading);
+      font-size: clamp(40px, 4.5vw, 64px);
+      font-weight: 900;
+      color: #ffffff;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.8), 0 0 10px rgba(43, 130, 230, 0.5);
+      margin-bottom: 14px;
+      letter-spacing: -0.5px;
+    }
+
+    .panel-desc {
+      font-size: clamp(14px, 1.2vw, 17px);
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 380px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    }
+
+    .panel-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 800;
+      color: #ffffff;
+      background: #2b82e6;
+      padding: 12px 24px;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(43, 130, 230, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    /* Hover States */
+    .hero-split-panel.is-expanded {
+      flex: 1.4;
+    }
+
+    .hero-split-panel.is-expanded .panel-bg-image {
+      transform: scale(1.06);
+    }
+
+    .hero-split-panel.is-expanded .panel-center-gradient {
+      opacity: 0.3;
+    }
+
+    .hero-split-panel.is-solid-hidden {
+      flex: 0.6;
+    }
+
+    .hero-split-panel.is-solid-hidden .panel-solid-overlay {
+      opacity: 1 !important;
+    }
+
+    .hero-split-panel.is-solid-hidden .panel-bg-image {
+      opacity: 0 !important;
+    }
+
+    .hero-split-panel.is-solid-hidden .panel-content {
+      opacity: 0.15;
+      transform: translateY(-50%) scale(0.88);
+      pointer-events: none;
+    }
+
+    .main-header {
+      background-color: #ffffff !important;
+    }
+    .main-header .nav-link {
+      color: #0f2851 !important;
+      font-weight: 700 !important;
+    }
+    .main-header .hamburger-line {
+      background-color: #0f2851 !important;
     }
 
     @media (max-width: 1024px) {
@@ -839,71 +1019,54 @@
        PAGE 1: 메인 화면 (100vh 풀스크린 캐러셀 & 도트 지도)
        ========================================================= -->
   <div id="page-home" class="page-view active">
-    <!-- 100vh Hero Carousel -->
-    <div class="hero-carousel-container">
-      <!-- Slide 1: Brand & Slogan -->
-      <div class="carousel-slide active" id="slide-0" style="background-image: linear-gradient(135deg, #0c1a30 0%, #050b15 100%);">
-        <div class="slide-overlay"></div>
-        <div class="container slide-content-wrapper">
-          <div style="text-align: center; max-width: 900px; margin: 0 auto;">
-            <span class="slide-tagline-badge">NEXT MOBILITY & CLIMATE TECH</span>
-            <h1 class="slide-title" style="font-size: clamp(48px, 6vw, 76px);">
-              MIDBAR SOLUTION
-            </h1>
-            <p class="slide-desc" style="margin: 0 auto 40px auto;">
-              (주)미드바르 솔루션은 스마트 냉동공조 제어 시스템과 해양 자율운항 수상드론 기술을 융합하여 혁신적인 미래 산업 생태계를 선도합니다.
-            </p>
-            <div class="slide-actions" style="justify-content: center;">
-              <a onclick="switchPage('tech')" class="btn-carousel-cta">핵심기술</a>
-              <a onclick="switchPage('products')" class="btn-carousel-cta outline">제품소개</a>
-            </div>
+    <!-- 1st Fold: Split Interactive Hero (냉동공조 vs 수상드론 호버 인터랙션) -->
+    <section class="hero-split-wrapper" id="hero-split-el">
+      <!-- LEFT: 냉동공조 -->
+      <div
+        class="hero-split-panel panel-left"
+        id="panel-left-el"
+        onmouseenter="handlePanelHover('left')"
+        onmouseleave="handlePanelHover(null)"
+        onclick="switchPage('tech')"
+      >
+        <div class="panel-click-layer">
+          <div class="panel-bg-image bg-hvac"></div>
+          <div class="panel-solid-overlay"></div>
+          <div class="panel-center-gradient left-grad"></div>
+          <div class="panel-content left-content">
+            <span class="panel-badge">HVAC & REFRIGERATION</span>
+            <h2 class="panel-title">냉동공조</h2>
+            <p class="panel-desc">스마트 클린룸 & 정밀 항온항습 제어 시스템</p>
+            <span class="panel-cta-btn">
+              핵심기술 보기 <span class="arrow">→</span>
+            </span>
           </div>
         </div>
       </div>
 
-      <!-- Slide 2: 스마트 냉동공조 -->
-      <div class="carousel-slide" id="slide-1" style="background-image: radial-gradient(circle at 60% 40%, #102648 0%, #07101e 100%);">
-        <div class="slide-overlay"></div>
-        <div class="container slide-content-wrapper">
-          <span class="slide-tagline-badge">HVAC & REFRIGERATION</span>
-          <h1 class="slide-title">스마트 냉동공조</h1>
-          <p class="slide-desc">
-            정밀 온도 제어와 AI 기반 에너지 효율화로 산업 설비 및 콜드체인 환경을 최적화합니다.
-          </p>
-          <div class="slide-actions">
-            <a onclick="switchPage('tech')" class="btn-carousel-cta">핵심기술</a>
-            <a onclick="switchPage('products')" class="btn-carousel-cta outline">제품소개</a>
+      <!-- RIGHT: 수상드론 -->
+      <div
+        class="hero-split-panel panel-right"
+        id="panel-right-el"
+        onmouseenter="handlePanelHover('right')"
+        onmouseleave="handlePanelHover(null)"
+        onclick="switchPage('tech')"
+      >
+        <div class="panel-click-layer">
+          <div class="panel-bg-image bg-drone"></div>
+          <div class="panel-solid-overlay"></div>
+          <div class="panel-center-gradient right-grad"></div>
+          <div class="panel-content right-content">
+            <span class="panel-badge">AUTONOMOUS MARINE ROBOTICS</span>
+            <h2 class="panel-title">수상드론</h2>
+            <p class="panel-desc">해양 환경 모니터링 & 자율운항 순찰 수상드론</p>
+            <span class="panel-cta-btn">
+              핵심기술 보기 <span class="arrow">→</span>
+            </span>
           </div>
         </div>
       </div>
-
-      <!-- Slide 3: 자율운항 수상드론 -->
-      <div class="carousel-slide" id="slide-2" style="background-image: radial-gradient(circle at 40% 60%, #0d213e 0%, #060f1c 100%);">
-        <div class="slide-overlay"></div>
-        <div class="container slide-content-wrapper">
-          <span class="slide-tagline-badge">SURFACE DRONE MOBILITY</span>
-          <h1 class="slide-title">해양 자율운항 수상드론</h1>
-          <p class="slide-desc">
-            AI 비전과 고정밀 GPS 자율 항법으로 스마트 항만 순찰 및 해양 환경을 실시간 모니터링합니다.
-          </p>
-          <div class="slide-actions">
-            <a onclick="switchPage('tech')" class="btn-carousel-cta">핵심기술</a>
-            <a onclick="switchPage('products')" class="btn-carousel-cta outline">제품소개</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Nav Arrows -->
-      <button class="carousel-nav-btn prev" onclick="prevSlide()">&laquo;</button>
-      <button class="carousel-nav-btn next" onclick="nextSlide()">&raquo;</button>
-
-      <!-- Dots -->
-      <div class="carousel-dots">
-        <button class="carousel-dot active" id="dot-0" onclick="goToSlide(0)"></button>
-        <button class="carousel-dot" id="dot-1" onclick="goToSlide(1)"></button>
-        <button class="carousel-dot" id="dot-2" onclick="goToSlide(2)"></button>
-      </div>
-    </div>
+    </section>
 
     <!-- 2nd Fold: Global Dot Map (한 화면에 쏙 들어오는 컴팩트 뷰) -->
     <section class="dot-map-section" style="padding: 60px 0 50px 0; min-height: 100vh; display: flex; flex-direction: column; justify-content: center;">
@@ -1475,6 +1638,27 @@
       const bizEl = document.getElementById('map-info-biz');
       if (titleEl) titleEl.innerText = country;
       if (bizEl) bizEl.innerText = biz;
+    }
+
+    function handlePanelHover(side) {
+      const leftEl = document.getElementById('panel-left-el');
+      const rightEl = document.getElementById('panel-right-el');
+      if (!leftEl || !rightEl) return;
+
+      if (side === 'left') {
+        leftEl.classList.add('is-expanded');
+        leftEl.classList.remove('is-solid-hidden');
+        rightEl.classList.add('is-solid-hidden');
+        rightEl.classList.remove('is-expanded');
+      } else if (side === 'right') {
+        rightEl.classList.add('is-expanded');
+        rightEl.classList.remove('is-solid-hidden');
+        leftEl.classList.add('is-solid-hidden');
+        leftEl.classList.remove('is-expanded');
+      } else {
+        leftEl.classList.remove('is-expanded', 'is-solid-hidden');
+        rightEl.classList.remove('is-expanded', 'is-solid-hidden');
+      }
     }
 
     window.addEventListener('scroll', () => {

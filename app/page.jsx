@@ -1,5 +1,5 @@
 import React from 'react';
-import HeroCarousel from '../components/HeroCarousel';
+import HeroSplitSection from '../components/HeroSplitSection';
 import InteractiveDotMap from '../components/InteractiveDotMap';
 
 export const metadata = {
@@ -10,8 +10,8 @@ export const metadata = {
 export default function HomePage() {
   return (
     <div className="home-page-container">
-      {/* 1st Fold: 100vh Full-screen Hero Slider */}
-      <HeroCarousel />
+      {/* 1st Fold: Split Interactive Hero (냉동공조 vs 수상드론 호버 인터랙션) */}
+      <HeroSplitSection />
 
       {/* 2nd Fold: Global Interactive Dot Map (도트 지도 & 진출 국가 인터랙션) */}
       <InteractiveDotMap />
