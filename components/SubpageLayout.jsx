@@ -220,9 +220,6 @@ export default function SubpageLayout({
                 style={{ maxWidth: '100%', maxHeight: '420px', objectFit: 'cover', borderRadius: '14px', cursor: 'pointer', boxShadow: '0 12px 30px rgba(0,0,0,0.4)' }}
                 onClick={() => setZoomOpen(true)}
               />
-              <div className="image-zoom-hint-text" style={{ position: 'absolute', bottom: '10px', background: 'rgba(0,0,0,0.7)', color: '#fff', padding: '4px 12px', borderRadius: '20px', fontSize: '12px' }}>
-                이미지를 누르면 확대해서 확인하실 수 있습니다.
-              </div>
             </div>
           ) : (
             <div 

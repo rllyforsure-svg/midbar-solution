@@ -13,7 +13,7 @@ export default function HvacTechPage() {
       activeTab="hvac"
       title="Smart 공조 시스템"
       description="공조기의 팬 & 진동 이상, 필터 차압, 코일 동작을 실시간 감시하고 분석하여 장비의 상태 및 결함을 진단"
-      bgImage="/images/slide-automation.png"
+      bgImage="/images/tech-hvac-main.jpg"
       stat1={{ value: '99.97%', label: '초미세 입자 제거 효율' }}
       stat2={{ value: 'ISO Class 5', label: '글로벌 청정도 표준 달성' }}
     >
