@@ -5062,5 +5062,38 @@ h1, h2, h3, h4, h5, h6,
   }
 }
 
+/* 8. Tech & Process Diagram Card Styles */
+.tech-diagram-card {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  padding: clamp(24px, 4vw, 48px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-top: 24px;
+  box-sizing: border-box;
+}
+
+.tech-diagram-img {
+  width: 100%;
+  max-width: 1050px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .tech-diagram-card {
+    padding: 16px;
+    border-radius: 14px;
+  }
+}
+
+
 
 
