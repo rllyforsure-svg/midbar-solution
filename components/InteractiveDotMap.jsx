@@ -71,8 +71,8 @@ export default function InteractiveDotMap() {
         <div className="section-header-center" style={{ marginBottom: '28px' }}>
           <div className="section-badge-top" style={{ fontSize: '13px', marginBottom: '8px' }}>GLOBAL EXPANSION & NETWORK</div>
           <h2 className="section-title-large" style={{ fontSize: '36px', marginBottom: '10px' }}>글로벌 비즈니스 네트워크</h2>
-          <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.75)', lineHeight: 1.6, margin: '0 auto', maxWidth: '720px' }}>
-            지도 위의 주요 거점(한국, 일본, 대만, 인도네시아)에 마우스를 올리시면 해당 국가명과 주요사업을 확인하실 수 있습니다.
+          <p className="dot-map-desc-text" style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.75)', lineHeight: 1.6, margin: '0 auto' }}>
+            지도 위의 주요거점에 마우스를 올리시면 상세정도를 확인하실수있습니다.
           </p>
         </div>
 

@@ -4337,6 +4337,17 @@ h1, h2, h3, h4, h5, h6,
   color: #ffffff;
   margin-bottom: 16px;
 }
+.dot-map-desc-text {
+  font-family: var(--font-primary);
+  white-space: nowrap;
+  letter-spacing: -0.2px;
+}
+@media (max-width: 800px) {
+  .dot-map-desc-text {
+    white-space: normal !important;
+    word-break: keep-all !important;
+  }
+}
 .dot-map-canvas-card {
   position: relative;
   width: 100%;
