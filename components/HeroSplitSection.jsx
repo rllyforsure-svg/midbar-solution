@@ -27,7 +27,6 @@ export default function HeroSplitSection() {
 
         {/* Text & Actions Content */}
         <div className="panel-content left-content">
-          <span className="panel-badge">HVAC & REFRIGERATION</span>
           <h2 className="panel-title">냉동공조</h2>
           <p className="panel-desc">스마트 클린룸 & 정밀 항온항습 제어 시스템</p>
 
@@ -62,7 +61,6 @@ export default function HeroSplitSection() {
 
         {/* Text & Actions Content */}
         <div className="panel-content right-content">
-          <span className="panel-badge">AUTONOMOUS MARINE ROBOTICS</span>
           <h2 className="panel-title">수상드론</h2>
           <p className="panel-desc">해양 환경 모니터링 & 자율운항 순찰 수상드론</p>
 
