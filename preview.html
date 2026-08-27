@@ -997,9 +997,51 @@
       background-color: #0f2851 !important;
     }
 
+    .products-sidebar-drawer {
+      background: #fafbfc;
+      border-right: 1px solid rgba(0, 0, 0, 0.08);
+      padding: 40px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 280px;
+      flex-shrink: 0;
+    }
+    .sidebar-heading {
+      font-size: 20px;
+      font-weight: 800;
+      color: #000;
+      margin: 0 0 24px 0;
+      letter-spacing: -0.5px;
+    }
+    .sidebar-btn {
+      width: 100%;
+      padding: 12px 0;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      font-size: 16px;
+      font-weight: 700;
+      color: #555555;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .sidebar-btn:last-child {
+      border-bottom: none;
+    }
+    .sidebar-btn:hover {
+      color: #2b82e6;
+    }
+    .sidebar-btn.active {
+      color: #2b82e6;
+      font-weight: 800;
+    }
+
     @media (max-width: 1024px) {
       .split-view-wrapper { grid-template-columns: 1fr; }
       .split-view-wrapper.products-layout { grid-template-columns: 1fr; }
+      .products-sidebar-drawer { width: 100%; border-right: none; border-bottom: 1px solid rgba(0, 0, 0, 0.08); }
       .hvac-grid-four { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
     }
