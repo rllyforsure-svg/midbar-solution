@@ -18,7 +18,7 @@ const products = [
   {
     title: 'M-Ocean 수질관측 수상드론',
     description: '다채널 고정밀 환경 센서를 탑재하여 강, 호수, 연안 해역의 수질 오염원 및 녹조·적조 발생 현황을 실시간 측정하고 3D 오염 지도를 생성하는 스마트 관측선.',
-    bgImage: '/images/hero-drone-marine.png',
+    bgImage: '/images/hero-drone.png',
     stat1: { value: '측정항목', label: '수온, pH, DO, 탁도, 전도도 등 8종' },
     stat2: { value: '샘플링', label: '자동 시수 채수 시스템 내장' },
     keyApplications: ['상수원 및 댐 수질 관리', '연안 환경 오염 모니터링', '적조 / 녹조 조기 경보']

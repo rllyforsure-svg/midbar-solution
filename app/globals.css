@@ -4505,39 +4505,42 @@ h1, h2, h3, h4, h5, h6,
 }
 
 /* =========================================================
-   [CONTRAST & THEME INTEGRITY RULES]
-   흰 배경에는 검은 글씨 (#111111 / #1e293b), 
-   어두운 배경에는 흰 글씨 (#ffffff / rgba(255,255,255,0.85)) 보장
+   [SEAONTECH THEME & COLOR ALIGNMENT]
+   - 회사소개(/about) & 고객지원(/support): Clean White Theme (#ffffff, #eaeaea borders, dark text)
+   - 제품소개(/products): Pure White Card Theme (#ffffff, dark text, clean stats)
+   - 핵심기술(/tech): 1st Fold Dark Tech Split (#071120) + 2nd Fold Light Tech Extra (#f7f9fc)
    ========================================================= */
 
-/* 1. Scrolled Header (White Background -> Black Text) */
-.main-header.scrolled {
+/* 1. Scrolled & Subpage Fixed Header (White Background -> Black Text) */
+.main-header.scrolled,
+.main-header.subpage-header {
   background-color: rgba(255, 255, 255, 0.98) !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
 }
-.main-header.scrolled .nav-link {
-  color: #111827 !important; /* 검은 글씨 */
-  font-weight: 600 !important;
+.main-header.scrolled .nav-link,
+.main-header.subpage-header .nav-link {
+  color: #000000 !important;
+  font-weight: 700 !important;
 }
 .main-header.scrolled .nav-link:hover,
-.main-header.scrolled .nav-link.active {
-  color: #2563eb !important;
+.main-header.scrolled .nav-link.active,
+.main-header.subpage-header .nav-link:hover,
+.main-header.subpage-header .nav-link.active {
+  color: #2b82e6 !important;
   font-weight: 800 !important;
 }
-.main-header.scrolled .hamburger-line {
-  background-color: #111827 !important; /* 검은 아이콘 */
+.main-header.scrolled .hamburger-line,
+.main-header.subpage-header .hamburger-line {
+  background-color: #111111 !important;
 }
 
-/* 2. Global Mobile Sidebar (White Background -> Black Text) */
+/* 2. Global Mobile Sidebar */
 .global-sidebar {
   background-color: #ffffff !important;
 }
-.global-sidebar .sidebar-nav-link {
-  color: #0f172a !important; /* 검은 글씨 */
-}
-.global-sidebar .sidebar-accordion-trigger {
-  color: #0f172a !important; /* 검은 글씨 */
-}
+.global-sidebar .sidebar-nav-link,
+.global-sidebar .sidebar-accordion-trigger,
 .global-sidebar .sidebar-accordion-trigger span {
   color: #0f172a !important;
 }
@@ -4545,7 +4548,7 @@ h1, h2, h3, h4, h5, h6,
   border-color: #334155 !important;
 }
 .global-sidebar .sidebar-sub-link {
-  color: #475569 !important; /* 진한 회색 글씨 */
+  color: #475569 !important;
 }
 .global-sidebar .sidebar-sub-link:hover {
   color: #2563eb !important;
@@ -4555,28 +4558,68 @@ h1, h2, h3, h4, h5, h6,
   background-color: #f8fafc !important;
 }
 .global-sidebar .footer-company-name {
-  color: #0f172a !important; /* 검은 글씨 */
+  color: #0f172a !important;
 }
 .global-sidebar .footer-meta-info p {
-  color: #475569 !important; /* 진한 회색 글씨 */
+  color: #475569 !important;
 }
 .global-sidebar .footer-meta-info span {
   color: #2563eb !important;
 }
 .global-sidebar .sidebar-close-btn .close-line {
-  background-color: #0f172a !important; /* 검은 닫기 아이콘 */
+  background-color: #0f172a !important;
 }
 
-/* 3. Products Internal Card Drawer (White Background -> Black Text) */
+/* 3. Products Page Theme (SeaonTech Pure White Layout) */
+.subpage-tab-wrapper.products-theme {
+  background-color: #ffffff !important;
+}
+.products-theme .subpage-tabs-nav {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02) !important;
+}
+.split-view-container.products-card {
+  background-color: #ffffff !important;
+}
+.split-view-container.products-card .split-left-visual {
+  background-color: #ffffff !important;
+}
+.split-view-container.products-card .split-left-visual::after {
+  display: none !important;
+}
+.split-view-container.products-card .split-right-content {
+  background-color: #ffffff !important;
+  color: #111111 !important;
+}
+.split-view-container.products-card .content-main-title {
+  color: #000000 !important;
+}
+.split-view-container.products-card .content-main-desc {
+  color: #444444 !important;
+}
+.split-view-container.products-card .stat-item-box {
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  background-color: transparent !important;
+  border-radius: 8px !important;
+  padding: 16px 24px !important;
+}
+.split-view-container.products-card .stat-value {
+  color: #000000 !important;
+}
+.split-view-container.products-card .stat-label {
+  color: #777777 !important;
+}
 .card-sidebar-drawer {
   background: #ffffff !important;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25) !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
 }
 .card-sidebar-drawer h3 {
-  color: #0f172a !important; /* 검은 글씨 */
+  color: #0f172a !important;
 }
 .sidebar-product-item {
-  color: #334155 !important; /* 진한 회색 글씨 */
+  color: #334155 !important;
   background: #f1f5f9 !important;
   border: 1px solid #e2e8f0 !important;
 }
@@ -4585,272 +4628,282 @@ h1, h2, h3, h4, h5, h6,
   color: #0f172a !important;
 }
 .sidebar-product-item.active {
-  background: #2563eb !important;
-  color: #ffffff !important; /* 액티브 블루 배경에는 흰 글씨 */
-  border-color: #2563eb !important;
+  background: #2b82e6 !important;
+  color: #ffffff !important;
+  border-color: #2b82e6 !important;
 }
-.sidebar-product-item .product-item-name {
-  color: inherit !important;
+.key-app-panel {
+  background: #f8fafc !important;
+  border-left: 4px solid #2b82e6 !important;
+  border-radius: 0 12px 12px 0 !important;
+}
+.key-app-panel h4 {
+  color: #0f172a !important;
+}
+.key-app-panel ul li {
+  color: #334155 !important;
 }
 
-/* 4. Support Page Form & Inputs (Dark Background -> White Text, Inputs: Dark -> White Text) */
+/* 4. Support Page Theme (SeaonTech Clean White Form & Map) */
 .support-page-wrapper {
-  background-color: var(--bg-dark-blue, #0c1524);
+  background-color: #ffffff !important;
   min-height: 100vh;
-  padding-top: 120px;
 }
 .support-section {
-  padding: 60px 0 80px 0;
+  background-color: #ffffff !important;
+  padding: 110px 24px 40px 24px;
+}
+.support-section.support-sec-form {
+  padding-top: 140px;
+  padding-bottom: 30px;
+}
+.support-section.support-sec-map {
+  padding-top: 70px;
 }
 .support-section-container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0;
+  width: 100%;
 }
 .support-section-title {
-  font-size: clamp(32px, 3.5vw, 44px);
-  font-weight: 900;
-  color: #ffffff !important; /* 흰 글씨 */
-  margin-bottom: 12px;
+  font-family: var(--font-primary);
+  font-size: 48px;
+  font-weight: 800;
+  color: #000000 !important;
+  margin: 0 0 4px 0;
+  letter-spacing: -1.2px;
 }
 .support-section-subtitle {
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.75) !important; /* 흰/연회색 글씨 */
-  margin-bottom: 36px;
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: 700;
+  color: #222222 !important;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.5px;
 }
 .support-form-card {
-  background: #091322 !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  background-color: #ffffff !important;
+  border: 2px solid #eaeaea !important;
+  border-radius: 24px !important;
+  padding: 32px 44px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02) !important;
 }
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-bottom: 24px;
+  gap: 16px 40px;
 }
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 .form-group.full-width {
   grid-column: 1 / -1;
-  margin-bottom: 24px;
 }
 .form-group label {
-  font-size: 14px;
+  font-family: var(--font-primary);
+  font-size: 16px;
   font-weight: 700;
-  color: #ffffff !important; /* 어두운 배경에 흰 글씨 */
+  color: #333333 !important;
 }
 .form-group input[type="text"],
 .form-group input[type="tel"],
-.form-group input[type="email"],
-.form-group textarea {
-  background: #0f1f38 !important; /* 어두운 인풋 배경 */
-  border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
-  border-radius: 10px;
-  padding: 14px 16px;
-  font-size: 15px;
-  color: #ffffff !important; /* 어두운 인풋 배경에 흰 글씨 */
-  font-family: inherit;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+.form-group input[type="email"] {
+  background: #ffffff !important;
+  border: 2px solid #eaeaea !important;
+  border-radius: 8px !important;
+  padding: 0 16px !important;
+  height: 46px !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  color: #111111 !important;
+  outline: none;
 }
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: rgba(255, 255, 255, 0.4) !important;
+.form-group textarea {
+  background: #ffffff !important;
+  border: 2px solid #eaeaea !important;
+  border-radius: 8px !important;
+  padding: 12px 14px !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  color: #111111 !important;
+  outline: none;
+  height: 80px !important;
 }
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: #38bdf8 !important;
-  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2) !important;
-  outline: none;
+  border-color: #2b82e6 !important;
 }
 .form-checkbox-group {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 12px;
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
   margin-top: 6px;
 }
 .checkbox-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   cursor: pointer;
-  background: #0f1f38;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  padding: 10px 14px;
-  transition: all 0.2s ease;
+  background: transparent;
+  border: none;
+  padding: 0;
 }
-.checkbox-item:hover {
-  border-color: #38bdf8;
-  background: #142848;
+.checkbox-item input {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #eaeaea;
+  border-radius: 4px;
+  cursor: pointer;
 }
 .checkbox-item span {
-  font-size: 14px;
+  font-family: var(--font-primary);
+  font-size: 16px;
   font-weight: 600;
-  color: #ffffff !important; /* 흰 글씨 */
+  color: #444444 !important;
 }
 .form-submit-row {
   display: flex;
   justify-content: flex-end;
+  margin-top: 8px;
 }
 .form-submit-btn {
-  background: #2563eb;
-  color: #ffffff !important; /* 파란 배경에 흰 글씨 */
-  font-size: 16px;
-  font-weight: 800;
-  padding: 14px 40px;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  padding: 12px 38px !important;
+  border-radius: 30px !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  box-shadow: none !important;
   transition: all 0.2s ease;
 }
 .form-submit-btn:hover {
-  background: #1d4ed8;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.5);
+  background-color: #2b82e6 !important;
+  box-shadow: 0 4px 15px rgba(43, 130, 230, 0.3) !important;
 }
-
-/* 5. Support Page Directions Table (Dark Background -> White Text) */
 .support-map-placeholder {
-  width: 100%;
-  height: 380px;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
-  margin-bottom: 30px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: #ffffff !important;
+  border: 2px solid #eaeaea !important;
+  border-radius: 24px !important;
+  box-shadow: none !important;
+  margin-bottom: 24px !important;
 }
 .support-directions-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #091322;
-  border-radius: 14px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: #ffffff !important;
+  border: 2px solid #eaeaea !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02) !important;
 }
 .support-directions-table th {
-  background: #103A62;
-  color: #ffffff !important; /* 흰 글씨 */
-  font-size: 15px;
-  font-weight: 800;
-  padding: 16px 20px;
-  text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #f8f9fa !important;
+  border-bottom: 2px solid #eaeaea !important;
+  color: #111111 !important;
+  padding: 16px 24px !important;
+  font-size: 17px !important;
+  font-weight: 800 !important;
 }
 .support-directions-table td {
-  padding: 16px 20px;
-  font-size: 14.5px;
-  color: rgba(255, 255, 255, 0.9) !important; /* 흰 글씨 */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-.support-directions-table tr:last-child td {
-  border-bottom: none;
+  border-bottom: 1px solid #eaeaea !important;
+  color: #444444 !important;
+  padding: 18px 24px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
 }
 .support-directions-table td strong {
-  color: #38bdf8 !important; /* 하늘색 강조 */
+  color: #111111 !important;
 }
 .badge-subway {
-  display: inline-block;
-  background: rgba(37, 99, 235, 0.25);
-  color: #60a5fa !important;
-  font-size: 12.5px;
-  font-weight: 800;
-  padding: 4px 10px;
-  border-radius: 6px;
-  border: 1px solid rgba(37, 99, 235, 0.5);
+  background-color: #0052a4 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 6px 16px !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
 }
 .badge-bus {
-  display: inline-block;
-  background: rgba(16, 185, 129, 0.25);
-  color: #34d399 !important;
-  font-size: 12.5px;
-  font-weight: 800;
-  padding: 4px 10px;
-  border-radius: 6px;
-  border: 1px solid rgba(16, 185, 129, 0.5);
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 6px 16px !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
 }
 .badge-car {
-  display: inline-block;
-  background: rgba(245, 158, 11, 0.25);
-  color: #fbbf24 !important;
-  font-size: 12.5px;
-  font-weight: 800;
-  padding: 4px 10px;
-  border-radius: 6px;
-  border: 1px solid rgba(245, 158, 11, 0.5);
+  background-color: #475569 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 6px 16px !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
 }
 
-/* 6. About Page Greeting Letter & Org Chart (Dark Background -> White Text) */
+/* 5. About Page Theme (SeaonTech Clean White Greeting & Org Chart) */
 .about-page-wrapper {
-  background-color: var(--bg-dark-blue, #0c1524);
+  background-color: #ffffff !important;
   min-height: 100vh;
 }
 .about-section {
-  padding: 100px 0 80px 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  background-color: #ffffff !important;
+  height: 100vh;
+  padding: clamp(90px, 11vh, 120px) 24px 20px 24px;
+}
+.about-section.greeting-sec {
+  padding-top: clamp(160px, 20vh, 220px);
 }
 .about-section-container {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0;
   width: 100%;
 }
 .about-section-title {
-  font-size: clamp(34px, 4vw, 50px);
-  font-weight: 900;
-  color: #ffffff !important; /* 흰 글씨 */
-  margin-bottom: 24px;
+  font-family: var(--font-primary);
+  font-size: clamp(28px, 3.2vw, 38px);
+  font-weight: 800;
+  color: #000000 !important;
+  margin: 0 0 12px 0;
+  letter-spacing: -1px;
 }
 .about-message-box {
-  background: #091322 !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: 20px;
-  padding: 48px;
-  font-size: 17.5px;
-  line-height: 1.9;
-  color: rgba(255, 255, 255, 0.9) !important; /* 흰 글씨 */
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  background-color: #ffffff !important;
+  border: 2px solid #eaeaea !important;
+  border-radius: 16px !important;
+  padding: clamp(40px, 5vh, 60px) clamp(50px, 7vw, 90px) !important;
+  max-width: 1400px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02) !important;
 }
 .about-message-box p {
-  margin-bottom: 20px;
-  color: rgba(255, 255, 255, 0.9) !important; /* 흰 글씨 */
-}
-.about-message-logo {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 30px;
+  font-family: var(--font-primary);
+  font-size: clamp(19px, 2.1vw, 22px);
+  font-weight: 600;
+  color: #222222 !important;
+  line-height: 1.85;
+  margin: 0 0 24px 0;
 }
 .about-org-box {
-  background: #091322 !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: 20px;
-  padding: 48px 30px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+.org-chart-wrapper {
+  background-color: transparent !important;
 }
 .org-card {
-  background: #0c1a2e !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transition: all 0.25s ease;
-}
-.org-card:hover {
-  border-color: #2b82e6 !important;
-  transform: translateY(-4px);
+  background: #ffffff !important;
+  border: 2px solid #eaeaea !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04) !important;
 }
 .org-card-header {
   background: #103A62 !important;
-  color: #ffffff !important; /* 흰 글씨 */
+  color: #ffffff !important;
   font-size: 16px;
   font-weight: 800;
   padding: 12px 16px;
@@ -4858,20 +4911,56 @@ h1, h2, h3, h4, h5, h6,
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .org-card-body {
+  background: #ffffff !important;
   padding: 16px 18px;
 }
-.org-card-body ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
 .org-card-body ul li {
+  color: #333333 !important;
   font-size: 13.5px;
-  color: rgba(255, 255, 255, 0.85) !important; /* 흰 글씨 */
+  font-weight: 600;
   margin-bottom: 6px;
-  line-height: 1.5;
 }
-.org-card-ceo {
-  margin: 0 auto;
+
+/* 6. Tech Subpage Extra Sections (SeaonTech Light Tech Theme #f7f9fc) */
+.subpage-extra-section {
+  background-color: #f7f9fc !important;
+  padding-top: 150px;
+  padding-bottom: 80px;
 }
+.extra-section-header h2,
+.extra-title {
+  color: #111111 !important;
+}
+.extra-section-header .header-line {
+  background-color: #0c2b51 !important;
+}
+.hvac-point-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+}
+.hvac-point-card h4 {
+  color: #111111 !important;
+}
+.hvac-point-card ul li {
+  color: #444444 !important;
+  font-weight: 600;
+}
+.timeline-content-col {
+  background-color: #eaeaea !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01) !important;
+}
+.timeline-step-title {
+  color: #111111 !important;
+}
+.timeline-step-desc {
+  color: #444444 !important;
+}
+.timeline-badge {
+  background-color: #ffffff !important;
+  color: #111111 !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
 
