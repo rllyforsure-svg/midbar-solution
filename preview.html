@@ -15,15 +15,24 @@
     :root {
       --font-primary: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', sans-serif;
       --font-heading: 'Montserrat', 'Pretendard', sans-serif;
-      --bg-dark-blue: #0c1524;
-      --bg-midnight: #07101e;
-      --footer-navy: #103A62;
-      --accent-blue: #2b82e6;
-      --accent-glow: rgba(43, 130, 230, 0.4);
+      --c-deep-navy: #0A1C2D;
+      --c-core-navy: #13384E;
+      --c-steel-navy: #0F2B42;
+      --c-marine-blue: #154C78;
+      --c-ocean-blue: #2A6F9A;
+      --c-accent-teal: #2F7E7B;
+      --c-mist-gray: #E7EDF2;
+      --c-soft-white: #F7F9FB;
+
+      --bg-dark-blue: var(--c-deep-navy);
+      --bg-midnight: var(--c-deep-navy);
+      --footer-navy: var(--c-core-navy);
+      --accent-blue: var(--c-ocean-blue);
+      --accent-glow: rgba(47, 126, 123, 0.4);
       --text-white: #ffffff;
-      --text-muted: rgba(255, 255, 255, 0.7);
-      --card-bg: #111e33;
-      --card-border: rgba(255, 255, 255, 0.1);
+      --text-muted: rgba(231, 237, 242, 0.7);
+      --card-bg: var(--c-steel-navy);
+      --card-border: rgba(231, 237, 242, 0.12);
       --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       --transition-fast: all 0.2s ease;
     }
@@ -742,7 +751,7 @@
     }
     .footer-grid {
       display: grid;
-      grid-template-columns: 1.1fr 2.5fr 1.8fr 1.2fr;
+      grid-template-columns: 1.1fr 3.4fr 2.3fr;
       gap: 40px;
     }
     .footer-col-title {
@@ -1492,13 +1501,22 @@
             style="height: 38px; width: auto; display: block;"
           />
         </div>
-        <p style="font-size: 12px; color: rgba(255,255,255,0.6);">&copy; 2026 (주) 미드바르 솔루션 All Rights Reserved.</p>
       </div>
 
       <div>
         <h3 class="footer-col-title">MIDBAR SOLUTION</h3>
         <p style="font-size: 13.5px; color: rgba(255,255,255,0.7); line-height: 1.6; margin-top: 10px;">
           (주)미드바르 솔루션은 스마트 냉동공조 인프라와 자율운항 수상드론 기술을 융합하여 혁신적인 미래 산업 가치를 창출합니다.
+        </p>
+        <p style="font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 10px;">
+          <span style="font-weight: 700; color: rgba(255,255,255,0.35); margin-right: 8px;">사업자번호</span> 123-45-67890
+        </p>
+        <div style="display: flex; gap: 15px; margin-top: 8px;">
+          <a href="#" style="font-size: 13px; color: rgba(255,255,255,0.7); font-weight: 700; text-decoration: none;">개인정보처리방침</a>
+          <a href="#" style="font-size: 13px; color: rgba(255,255,255,0.45); text-decoration: none;">이용약관</a>
+        </div>
+        <p style="font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 8px;">
+          &copy; 2026 (주)미드바르 솔루션 Midbar Solution. All Rights Reserved.
         </p>
       </div>
 
@@ -1509,14 +1527,6 @@
           <p><span>F</span> 051-123-1234</p>
           <p><span>E</span> 123@midbarsolution.com</p>
           <p><span>A</span> 부산 강서구 명지국제6로 21 도형건설, 403호</p>
-        </div>
-      </div>
-
-      <div>
-        <h3 class="footer-col-title">CORPORATE</h3>
-        <div class="footer-contact-info">
-          <p><span>사업자</span> 123-45-67890</p>
-          <p><a href="#" style="color: #93c5fd; text-decoration: underline;">개인정보처리방침</a></p>
         </div>
       </div>
     </div>

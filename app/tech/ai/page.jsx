@@ -21,7 +21,7 @@ export default function AiTechPage() {
         <div className="container">
           <div className="extra-section-header">
             <h2 className="extra-title" style={{ fontSize: '32px', fontWeight: 900, color: '#fff', marginBottom: '10px' }}>보유기술</h2>
-            <div style={{ width: '60px', height: '3px', background: '#2b82e6', marginBottom: '40px' }}></div>
+            <div style={{ width: '60px', height: '3px', background: 'var(--c-marine-blue)', marginBottom: '40px' }}></div>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>

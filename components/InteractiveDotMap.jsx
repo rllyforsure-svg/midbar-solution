@@ -82,10 +82,10 @@ export default function InteractiveDotMap() {
           style={{ 
             position: 'relative',
             padding: '24px 28px', 
-            background: 'radial-gradient(circle at 55% 45%, #0d1e38 0%, #060e1a 100%)', 
-            border: '1px solid rgba(255,255,255,0.12)', 
+            background: 'radial-gradient(circle at 55% 45%, #13384E 0%, #0A1C2D 100%)', 
+            border: '1px solid rgba(231, 237, 242, 0.15)', 
             borderRadius: '24px',
-            boxShadow: '0 24px 60px rgba(0, 0, 0, 0.5)',
+            boxShadow: '0 24px 60px rgba(10, 28, 45, 0.6)',
             overflow: 'visible' // 툴팁 잘림 방지
           }}
         >
@@ -130,22 +130,22 @@ export default function InteractiveDotMap() {
                         onMouseLeave={handleMarkerLeave}
                         style={{
                           default: {
-                            fill: isCore ? '#1a3a6b' : '#112238',
-                            stroke: isCore ? '#38bdf8' : '#1d3557',
+                            fill: isCore ? '#154C78' : '#0F2B42',
+                            stroke: isCore ? '#2A6F9A' : '#13384E',
                             strokeWidth: isCore ? 1.5 : 0.8,
                             outline: 'none',
                             transition: 'all 0.25s ease',
                             cursor: isCore ? 'pointer' : 'default'
                           },
                           hover: {
-                            fill: isCore ? '#2563eb' : '#162b47',
-                            stroke: isCore ? '#60a5fa' : '#2a4873',
+                            fill: isCore ? '#2A6F9A' : '#154C78',
+                            stroke: isCore ? '#2F7E7B' : '#1e4368',
                             strokeWidth: isCore ? 2.4 : 1.0,
                             outline: 'none',
                             cursor: isCore ? 'pointer' : 'default'
                           },
                           pressed: {
-                            fill: isCore ? '#1d4ed8' : '#0e1d30',
+                            fill: isCore ? '#0F2B42' : '#0A1C2D',
                             outline: 'none'
                           }
                         }}
@@ -165,16 +165,18 @@ export default function InteractiveDotMap() {
                     onMouseEnter={(e) => handleMarkerHover(m, e)}
                     onMouseLeave={handleMarkerLeave}
                   >
-                    {/* Animated Outer Pulse Ring */}
-                    <circle r={isHovered ? 20 : 13} fill="rgba(56, 189, 248, 0.25)" style={{ cursor: 'pointer' }}>
+                    {/* Animated Outer Pulse Ring (Accent Teal) */}
+                    <circle r={isHovered ? 20 : 13} fill="rgba(47, 126, 123, 0.35)" style={{ cursor: 'pointer' }}>
                       <animate attributeName="r" values="9;22;9" dur="2.4s" repeatCount="indefinite" />
                       <animate attributeName="opacity" values="0.9;0.1;0.9" dur="2.4s" repeatCount="indefinite" />
                     </circle>
 
-                    {/* Middle Core Beacon */}
+                    {/* Middle Core Beacon (Ocean Blue & Accent Teal) */}
                     <circle
                       r={isHovered ? 8.5 : 6}
-                      fill="#38bdf8"
+                      fill="#2A6F9A"
+                      stroke="#2F7E7B"
+                      strokeWidth="1.5"
                       filter="url(#rsm-pin-glow)"
                       style={{ cursor: 'pointer' }}
                     />
@@ -186,7 +188,7 @@ export default function InteractiveDotMap() {
               })}
             </ComposableMap>
 
-            {/* Dynamic Hover Tooltip (절대 잘리지 않도록 z-index 100 및 최적 마진 배치) */}
+            {/* Dynamic Hover Tooltip */}
             {tooltipData && (
               <div
                 className="pro-hover-tooltip"
@@ -203,21 +205,21 @@ export default function InteractiveDotMap() {
               >
                 <div
                   style={{
-                    background: 'rgba(8, 19, 38, 0.98)',
-                    border: '1.5px solid #38bdf8',
+                    background: 'rgba(10, 28, 45, 0.98)',
+                    border: '1.5px solid #2F7E7B',
                     borderRadius: '12px',
                     padding: '11px 20px',
-                    boxShadow: '0 12px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(56, 189, 248, 0.4)',
+                    boxShadow: '0 12px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(47, 126, 123, 0.4)',
                     backdropFilter: 'blur(16px)',
                     textAlign: 'center'
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '3px' }}>
-                    <span style={{ width: '8px', height: '8px', background: '#38bdf8', borderRadius: '50%', boxShadow: '0 0 10px #38bdf8' }}></span>
+                    <span style={{ width: '8px', height: '8px', background: '#2F7E7B', borderRadius: '50%', boxShadow: '0 0 10px #2F7E7B' }}></span>
                     <strong style={{ fontSize: '18px', fontWeight: 800, color: '#ffffff' }}>{tooltipData.name}</strong>
-                    <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.65)' }}>({tooltipData.engName})</span>
+                    <span style={{ fontSize: '13px', color: '#E7EDF2' }}>({tooltipData.engName})</span>
                   </div>
-                  <div style={{ fontSize: '13.5px', fontWeight: 700, color: '#93c5fd', background: 'rgba(56, 189, 248, 0.15)', padding: '4px 12px', borderRadius: '6px', marginTop: '4px' }}>
+                  <div style={{ fontSize: '13.5px', fontWeight: 700, color: '#2F7E7B', background: 'rgba(47, 126, 123, 0.18)', padding: '4px 12px', borderRadius: '6px', marginTop: '4px' }}>
                     주요사업: 테스트
                   </div>
                 </div>
@@ -228,7 +230,7 @@ export default function InteractiveDotMap() {
                     height: '0',
                     borderLeft: '7px solid transparent',
                     borderRight: '7px solid transparent',
-                    borderTop: '8px solid #38bdf8',
+                    borderTop: '8px solid #2F7E7B',
                     margin: '0 auto'
                   }}
                 />

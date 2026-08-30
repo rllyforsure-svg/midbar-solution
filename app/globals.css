@@ -1,19 +1,30 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&display=swap');
 
-/* --- 테마 설정 및 CSS 변수 --- */
+/* --- 테마 설정 및 CSS 변수 (MIDBAR SOLUTION 공식 브랜드 컬러 팔레트) --- */
 :root {
   --font-primary: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   --font-heading: 'Montserrat', 'Pretendard', sans-serif;
 
-  /* HSL 기반 색상 매핑 (AION 테마) */
-  --bg-dark-blue: 212 75% 18%;
-  /* #0c2b51 - 푸터 배경색 */
-  --primary-accent: 212 75% 22%;
+  /* 미드바르 솔루션 공식 컬러 팔레트 */
+  --c-deep-navy: #0A1C2D;     /* 메인 컬러: 딥 네이비 (다크 베이스) */
+  --c-core-navy: #13384E;     /* 메인 컬러: 코어 네이비 (푸터, 주요 네이비) */
+  --c-steel-navy: #0F2B42;    /* 서브 컬러: 스틸 네이비 (헤더 텍스트, 타이틀) */
+  --c-marine-blue: #154C78;   /* 서브 컬러: 마린 블루 (CTA 버튼, 강조, 활성 라인) */
+  --c-ocean-blue: #2A6F9A;    /* 서브 컬러: 오션 블루 (인터랙티브, 링크 호버, 서브 액센트) */
+  --c-accent-teal: #2F7E7B;   /* 포인트 컬러: 액센트 틸 (스마트/친환경 배지, 상태 포인트) */
+  --c-mist-gray: #E7EDF2;     /* 배경/보더: 미스트 그레이 (서브 배경, 카드 보더) */
+  --c-soft-white: #F7F9FB;    /* 배경 컬러: 소프트 화이트 (기본 라이트 배경) */
 
-  --text-white: 0 0% 100%;
-  --text-muted: 210 20% 85%;
-  --text-dark: 220 20% 15%;
+  /* 시멘틱 컬러 매핑 */
+  --primary-blue: var(--c-marine-blue);
+  --accent-blue: var(--c-ocean-blue);
+  --point-teal: var(--c-accent-teal);
+  --bg-dark: var(--c-deep-navy);
+  --bg-footer: var(--c-core-navy);
+  --bg-light: var(--c-soft-white);
+  --bg-mist: var(--c-mist-gray);
+  --text-dark: var(--c-steel-navy);
 
   --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-fast: all 0.2s ease;
@@ -28,8 +39,8 @@
 }
 
 body {
-  background-color: #0c1524;
-  color: hsl(var(--text-white));
+  background-color: var(--c-deep-navy);
+  color: #ffffff;
   font-family: var(--font-primary);
   font-weight: 600; /* 본문 Pretendard SemiBold 기본 적용 */
   line-height: 1.6;
@@ -74,23 +85,23 @@ h1, h2, h3, h4, h5, h6,
   width: 100%;
   z-index: 1000;
   background: #ffffff !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+  border-bottom: 1px solid var(--c-mist-gray) !important;
+  box-shadow: 0 4px 20px rgba(10, 28, 45, 0.05) !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .main-header .nav-link {
-  color: #0f2851 !important; /* 모형 이미지와 동일한 네이비 딥블랙 폰트 */
+  color: var(--c-steel-navy) !important; /* 모형 이미지와 동일한 네이비 딥블랙 폰트 */
   font-weight: 700 !important;
 }
 
 .main-header .nav-link:hover,
 .main-header .nav-link.active {
-  color: #2b82e6 !important;
+  color: var(--c-ocean-blue) !important;
 }
 
 .main-header .hamburger-line {
-  background-color: #0f2851 !important;
+  background-color: var(--c-steel-navy) !important;
 }
 
 .header-container {
@@ -129,7 +140,7 @@ h1, h2, h3, h4, h5, h6,
   margin-top: 90px;
   position: relative;
   overflow: hidden;
-  background-color: #071220;
+  background-color: var(--c-deep-navy);
 }
 
 .hero-split-panel {
@@ -178,7 +189,7 @@ h1, h2, h3, h4, h5, h6,
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #08182b; /* 단색 네이비 */
+  background-color: var(--c-deep-navy); /* 미드바르 딥 네이비 */
   opacity: 0;
   transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
@@ -198,12 +209,12 @@ h1, h2, h3, h4, h5, h6,
 
 .left-grad {
   right: 0;
-  background: linear-gradient(90deg, transparent 0%, rgba(8, 24, 43, 0.4) 40%, rgba(8, 24, 43, 0.95) 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(10, 28, 45, 0.4) 40%, rgba(10, 28, 45, 0.95) 100%);
 }
 
 .right-grad {
   left: 0;
-  background: linear-gradient(270deg, transparent 0%, rgba(8, 24, 43, 0.4) 40%, rgba(8, 24, 43, 0.95) 100%);
+  background: linear-gradient(270deg, transparent 0%, rgba(10, 28, 45, 0.4) 40%, rgba(10, 28, 45, 0.95) 100%);
 }
 
 /* Text Content Overlay */
@@ -234,9 +245,9 @@ h1, h2, h3, h4, h5, h6,
   font-family: var(--font-heading);
   font-size: 12.5px;
   font-weight: 800;
-  color: #38bdf8;
-  background: rgba(56, 189, 248, 0.15);
-  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: var(--c-accent-teal);
+  background: rgba(47, 126, 123, 0.15);
+  border: 1px solid rgba(47, 126, 123, 0.4);
   padding: 4px 14px;
   border-radius: 20px;
   letter-spacing: 1.5px;
@@ -250,14 +261,14 @@ h1, h2, h3, h4, h5, h6,
   font-size: clamp(40px, 4.5vw, 64px);
   font-weight: 900;
   color: #ffffff;
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.8), 0 0 10px rgba(43, 130, 230, 0.5);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.8), 0 0 14px rgba(42, 111, 154, 0.6);
   margin-bottom: 14px;
   letter-spacing: -0.5px;
 }
 
 .panel-desc {
   font-size: clamp(14px, 1.2vw, 17px);
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(231, 237, 242, 0.9);
   max-width: 380px;
   line-height: 1.6;
   margin-bottom: 24px;
@@ -291,8 +302,8 @@ h1, h2, h3, h4, h5, h6,
   font-size: 14.5px;
   font-weight: 700;
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(19, 56, 78, 0.55);
+  border: 1px solid rgba(231, 237, 242, 0.3);
   border-radius: 8px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -302,11 +313,11 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .panel-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: rgba(255, 255, 255, 0.6);
+  background: linear-gradient(135deg, var(--c-marine-blue) 0%, var(--c-ocean-blue) 100%);
+  border-color: var(--c-accent-teal);
   color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 6px 20px rgba(47, 126, 123, 0.35);
 }
 
 /* =========================================================
@@ -328,7 +339,7 @@ h1, h2, h3, h4, h5, h6,
 
 .hero-split-panel.is-expanded .panel-title {
   color: #ffffff;
-  text-shadow: 0 0 30px rgba(56, 189, 248, 0.8), 0 4px 20px rgba(0,0,0,0.9);
+  text-shadow: 0 0 30px rgba(42, 111, 154, 0.8), 0 4px 20px rgba(0,0,0,0.9);
 }
 
 /* 2. 반대편 패널 (Solid Hidden - 단색으로 칠해지고 이미지 안보임) */
@@ -668,31 +679,27 @@ h1, h2, h3, h4, h5, h6,
   border-radius: 5px;
 }
 
-/* --- 푸터 스타일 (AION 하단바) --- */
+/* --- 푸터 스타일 (미드바르 코어 네이비 하단바) --- */
 .main-footer {
-  background-color: #103A62;
-  /* 고객 요청 지정 네이비 색상으로 변경 */
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background-color: var(--c-core-navy);
+  border-top: 1px solid rgba(231, 237, 242, 0.08);
   padding: 50px 0 35px 0;
-  /* 위아래 여백을 콤팩트하게 줄여 세련되게 밀착 */
   color: white;
 }
 
 .footer-grid-container {
   width: 100%;
   max-width: 1400px;
-  /* 1200px에서 1400px로 대폭 확장하여 와이드 뷰 구현 */
   margin: 0 auto;
   padding: 0 40px;
   box-sizing: border-box;
   position: relative;
-  /* 탑 버튼 절대 위치용 기준점 설정 */
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.1fr 2.7fr 1.8fr 1.3fr;
-  /* 사이트맵 제거 및 원형 버튼 절대 오버레이 배치에 맞춘 4열 복구 */
+  grid-template-columns: 1.1fr 3.4fr 2.3fr;
+  /* 3열 레이아웃: 로고, 브랜드 설명&법적정보, 연락처 */
   gap: 40px;
 }
 
@@ -707,28 +714,26 @@ h1, h2, h3, h4, h5, h6,
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* 세로 정중앙 정렬 */
   align-items: center;
-  /* 가로 정중앙 정렬 */
   height: 100%;
-  /* 전체 그리드 높이에 맞춰 확장 */
   box-sizing: border-box;
 }
 
 .footer-col.brand-logo-col .footer-logo-img {
   height: 100px;
-  /* 로고 높이를 100px로 대폭 키워 세로로(밑으로) 웅장하게 확장 */
   width: auto;
-  filter: brightness(0) invert(1);
-  /* 푸터의 어두운 배경에 흰색 로고 대응 */
   margin: 0;
+}
+
+.footer-col.brand-desc-col {
+  gap: 12px;
 }
 
 .footer-tagline {
   font-family: var(--font-heading);
   font-size: 14px;
   font-weight: 800;
-  color: rgba(255, 255, 255, 0.9);
+  color: #ffffff;
   letter-spacing: 1px;
   margin: 0;
 }
@@ -737,8 +742,21 @@ h1, h2, h3, h4, h5, h6,
   font-family: var(--font-primary);
   font-size: 13.5px;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(231, 237, 242, 0.65);
   margin: 0;
+}
+
+.footer-biz-num {
+  font-family: var(--font-primary);
+  font-size: 13px;
+  color: rgba(231, 237, 242, 0.7);
+  margin: 0;
+}
+
+.footer-biz-num span {
+  font-weight: 700;
+  color: rgba(231, 237, 242, 0.4);
+  margin-right: 8px;
 }
 
 /* 칼럼 제목 공통 */
@@ -746,13 +764,12 @@ h1, h2, h3, h4, h5, h6,
   font-family: var(--font-heading);
   font-size: 17px;
   font-weight: 800;
-  color: #2b82e6;
-  /* 포인트 블루 컬러 */
+  color: var(--c-ocean-blue);
   letter-spacing: 1px;
   text-transform: uppercase;
   margin: 0;
   padding-bottom: 5px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(231, 237, 242, 0.08);
 }
 
 /* 2열: 사이트맵 링크 */
@@ -769,7 +786,7 @@ h1, h2, h3, h4, h5, h6,
   font-family: var(--font-primary);
   font-size: 14px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(231, 237, 242, 0.65);
   text-decoration: none;
   transition: color 0.3s ease, padding-left 0.3s ease;
 }
@@ -789,15 +806,14 @@ h1, h2, h3, h4, h5, h6,
 .footer-contact-info p {
   font-family: var(--font-primary);
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(231, 237, 242, 0.75);
   margin: 0;
   line-height: 1.4;
 }
 
 .footer-contact-info p span {
   font-weight: 800;
-  color: #2b82e6;
-  /* 포인트 블루 */
+  color: var(--c-accent-teal);
   display: inline-block;
   width: 20px;
 }
@@ -806,36 +822,16 @@ h1, h2, h3, h4, h5, h6,
   line-height: 1.5;
 }
 
-/* 4열: 기업 정보 */
-.footer-corporate-info {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.footer-corporate-info p {
-  font-family: var(--font-primary);
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.6);
-  margin: 0;
-}
-
-.footer-corporate-info p span {
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.3);
-  margin-right: 10px;
-}
-
 .footer-legal-links {
   display: flex;
   gap: 15px;
-  margin-top: 10px;
+  margin: 0;
 }
 
 .legal-link {
   font-family: var(--font-primary);
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(231, 237, 242, 0.45);
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -846,23 +842,22 @@ h1, h2, h3, h4, h5, h6,
 
 .legal-link.bold {
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(231, 237, 242, 0.85);
 }
 
 .legal-link.bold:hover {
-  color: #2b82e6;
+  color: var(--c-accent-teal);
 }
 
 .footer-copyright {
   font-family: var(--font-primary);
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.35);
-  margin: 24px 0 0 0;
-  /* 설명글 하단에 적정한 간격으로 배치 */
+  color: rgba(231, 237, 242, 0.4);
+  margin: 0;
   line-height: 1.5;
 }
 
-.footer-col.corporate-col {
+.footer-col.contact-col {
   padding-right: 65px;
   /* 위로가기 버튼과의 겹침을 방지하기 위한 안전거리 확보 */
 }
@@ -871,17 +866,14 @@ h1, h2, h3, h4, h5, h6,
 .footer-scroll-top-btn {
   position: absolute;
   right: 0px;
-  /* 최대한 우측 끝으로 이동 */
-  /* 우측 끝부분으로 최대한 더 가깝게 이동 */
   top: 50%;
   transform: translateY(-50%);
-  /* 푸터 세로 높이 기준 정중앙 정렬 */
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(231, 237, 242, 0.12);
+  color: rgba(231, 237, 242, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -892,13 +884,11 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .footer-scroll-top-btn:hover {
-  background-color: #2b82e6;
-  /* 브랜드 포인트 블루 */
-  border-color: #2b82e6;
+  background-color: var(--c-marine-blue);
+  border-color: var(--c-ocean-blue);
   color: white;
   transform: translateY(-50%) translateY(-4px);
-  /* 중앙 정렬 상태에서 호버 시 위로 가볍게 이동 */
-  box-shadow: 0 4px 15px rgba(43, 130, 230, 0.3);
+  box-shadow: 0 4px 15px rgba(21, 76, 120, 0.4);
 }
 
 .top-arrow-icon {
@@ -1054,10 +1044,8 @@ h1, h2, h3, h4, h5, h6,
       padding-left: 0;
     }
 
-    .footer-corporate-info p span {
-      display: block;
-      margin-bottom: 4px;
-      margin-right: 0;
+    .footer-legal-links {
+      justify-content: center;
     }
   }
 
@@ -4980,13 +4968,13 @@ h1, h2, h3, h4, h5, h6,
   font-weight: 800 !important;
 }
 
-/* 5. About Page Theme (SeaonTech Clean White Greeting & Org Chart) */
+/* 5. About Page Theme (Midbar Clean Soft White Greeting & Org Chart) */
 .about-page-wrapper {
-  background-color: #ffffff !important;
+  background-color: var(--c-soft-white) !important;
   min-height: 100vh;
 }
 .about-section {
-  background-color: #ffffff !important;
+  background-color: var(--c-soft-white) !important;
   height: 100vh;
   padding: clamp(90px, 11vh, 120px) 24px 20px 24px;
 }
@@ -5003,18 +4991,18 @@ h1, h2, h3, h4, h5, h6,
   font-family: var(--font-primary);
   font-size: clamp(28px, 3.2vw, 38px);
   font-weight: 800;
-  color: #000000 !important;
+  color: var(--c-steel-navy) !important;
   margin: 0 0 12px 0;
   letter-spacing: -1px;
 }
 .about-message-box {
   background-color: #ffffff !important;
-  border: 2px solid #eaeaea !important;
+  border: 1.5px solid var(--c-mist-gray) !important;
   border-radius: 16px !important;
   padding: clamp(40px, 5vh, 60px) clamp(50px, 7vw, 90px) !important;
   max-width: 1400px;
   width: 100%;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02) !important;
+  box-shadow: 0 10px 30px rgba(10, 28, 45, 0.03) !important;
 }
 .about-message-box p {
   font-family: var(--font-primary);
@@ -5035,12 +5023,12 @@ h1, h2, h3, h4, h5, h6,
 }
 .org-card {
   background: #ffffff !important;
-  border: 2px solid #eaeaea !important;
+  border: 1.5px solid var(--c-mist-gray) !important;
   border-radius: 14px !important;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04) !important;
+  box-shadow: 0 8px 20px rgba(10, 28, 45, 0.04) !important;
 }
 .org-card-header {
-  background: #103A62 !important;
+  background: linear-gradient(135deg, var(--c-marine-blue) 0%, var(--c-core-navy) 100%) !important;
   color: #ffffff !important;
   font-size: 16px;
   font-weight: 800;
@@ -5059,55 +5047,55 @@ h1, h2, h3, h4, h5, h6,
   margin-bottom: 6px;
 }
 
-/* 6. Tech Subpage Extra Sections (SeaonTech Light Tech Theme #f7f9fc) */
+/* 6. Tech Subpage Extra Sections (Midbar Soft White Theme #F7F9FB) */
 .subpage-extra-section {
-  background-color: #f7f9fc !important;
+  background-color: var(--c-soft-white) !important;
   padding-top: 150px;
   padding-bottom: 80px;
 }
 .extra-section-header h2,
 .extra-title {
-  color: #111111 !important;
+  color: var(--c-steel-navy) !important;
 }
 .extra-section-header .header-line {
-  background-color: #0c2b51 !important;
+  background-color: var(--c-marine-blue) !important;
 }
 .hvac-point-card {
   background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
+  border: 1.5px solid var(--c-mist-gray) !important;
   border-radius: 16px !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+  box-shadow: 0 4px 15px rgba(10, 28, 45, 0.04) !important;
 }
 .hvac-point-card h4 {
-  color: #111111 !important;
+  color: var(--c-steel-navy) !important;
 }
 .hvac-point-card ul li {
   color: #444444 !important;
   font-weight: 600;
 }
 .timeline-content-col {
-  background-color: #eaeaea !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01) !important;
+  background-color: var(--c-mist-gray) !important;
+  box-shadow: 0 4px 12px rgba(10, 28, 45, 0.02) !important;
 }
 .timeline-step-title {
-  color: #111111 !important;
+  color: var(--c-steel-navy) !important;
 }
 .timeline-step-desc {
   color: #444444 !important;
 }
 .timeline-badge {
-  background-color: #ffffff !important;
-  color: #111111 !important;
-  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  background-color: var(--c-marine-blue) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
 }
 
-/* 7. Cinematic HVAC Hero Layout (Exact match with uploaded reference) */
+/* 7. Cinematic HVAC Hero Layout */
 .split-view-container.tech-cinematic-hvac {
   position: relative;
   width: 100%;
   height: calc(100vh - 190px);
   min-height: 620px;
-  background-color: #071120;
+  background-color: var(--c-deep-navy);
   background-image: url('/images/tech-hvac-main.jpg');
   background-position: right center;
   background-size: auto 100%;
@@ -5127,12 +5115,12 @@ h1, h2, h3, h4, h5, h6,
   height: 100%;
   background: linear-gradient(
     to right,
-    #071120 0%,
-    #071120 40%,
-    rgba(7, 17, 32, 0.96) 46%,
-    rgba(7, 17, 32, 0.75) 54%,
-    rgba(7, 17, 32, 0.2) 64%,
-    rgba(7, 17, 32, 0) 72%
+    #0A1C2D 0%,
+    #0A1C2D 40%,
+    rgba(10, 28, 45, 0.96) 46%,
+    rgba(10, 28, 45, 0.75) 54%,
+    rgba(10, 28, 45, 0.2) 64%,
+    rgba(10, 28, 45, 0) 72%
   );
   pointer-events: none;
   z-index: 2;

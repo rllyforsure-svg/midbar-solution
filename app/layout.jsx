@@ -49,6 +49,13 @@ export default function RootLayout({ children }) {
                 <p className="footer-desc">
                   (주)미드바르 솔루션은 스마트 냉동공조 인프라와 친환경 해양 자율운항 수상드론 기술을 융합하여 혁신적인 미래 산업 가치를 창출합니다.
                 </p>
+                <p className="footer-biz-num">
+                  <span>사업자번호</span> 123-45-67890
+                </p>
+                <div className="footer-legal-links">
+                  <Link href="/support" className="legal-link bold">개인정보처리방침</Link>
+                  <Link href="/support" className="legal-link">이용약관</Link>
+                </div>
                 <p className="footer-copyright">
                   &copy; 2026 (주)미드바르 솔루션 Midbar Solution. All Rights Reserved.
                 </p>
@@ -62,18 +69,6 @@ export default function RootLayout({ children }) {
                   <p><span>F</span> 051-123-1234</p>
                   <p><span>E</span> 123@midbarsolution.com</p>
                   <p className="contact-address"><span>A</span> 부산 강서구 명지국제6로 21 도형건설, 403호</p>
-                </div>
-              </div>
-
-              {/* 4. Corporate Column */}
-              <div className="footer-col corporate-col">
-                <h3 className="footer-col-title">Corporate</h3>
-                <div className="footer-corporate-info">
-                  <p><span>사업자번호</span> 123-45-67890</p>
-                  <div className="footer-legal-links">
-                    <Link href="/support" className="legal-link bold">개인정보처리방침</Link>
-                    <Link href="/support" className="legal-link">이용약관</Link>
-                  </div>
                 </div>
               </div>
             </div>

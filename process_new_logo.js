@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 
 async function processNewLogos() {
-  const inputPath = 'C:\\Users\\hayou\\.gemini\\antigravity-ide\\brain\\df3ea193-2a05-46a5-98cf-b2a231d4db31\\.user_uploaded\\media_1787811110739.png';
+  const inputPath = 'C:\\Users\\hayou\\.gemini\\antigravity-ide\\brain\\1e543988-937a-40a6-9494-c80005026098\\.user_uploaded\\media_1787898574868.png';
   
   const img = sharp(inputPath).ensureAlpha();
   const metadata = await img.metadata();
@@ -15,7 +15,7 @@ async function processNewLogos() {
 
   // Buffer 1: Dark logo (original colors, transparent background)
   const darkBuffer = Buffer.from(rawBuffer);
-  // Buffer 2: White/Light logo (white text + white/silver-gray hexagon icon for dark/colored backgrounds)
+  // Buffer 2: White/Light logo (#e6ecf0 and #F7F9FB for dark backgrounds)
   const lightBuffer = Buffer.from(rawBuffer);
 
   for (let i = 0; i < rawBuffer.length; i += 4) {
@@ -29,38 +29,41 @@ async function processNewLogos() {
     const diff = maxChannel - minChannel;
 
     // Check if background (white/off-white)
-    if (minChannel >= 240 && diff < 20) {
+    if (minChannel >= 242 && diff < 15) {
       darkBuffer[i + 3] = 0;
       lightBuffer[i + 3] = 0;
-    } else if (minChannel > 210 && diff < 30) {
-      const factor = (240 - minChannel) / 30.0;
-      darkBuffer[i + 3] = Math.round(Math.min(255, Math.max(0, a * factor)));
-      lightBuffer[i + 3] = Math.round(Math.min(255, Math.max(0, a * factor)));
+    } else if (minChannel > 215 && diff < 25) {
+      const factor = (242 - minChannel) / 27.0;
+      const alpha = Math.round(Math.min(255, Math.max(0, a * factor)));
+      darkBuffer[i + 3] = alpha;
+      lightBuffer[i + 3] = alpha;
     }
 
     // For Light version on dark backgrounds:
     if (lightBuffer[i + 3] > 0) {
-      // Calculate original luminance / brightness
-      // Original text is dark navy/black (r ~ 10-30, g ~ 20-40, b ~ 30-50)
-      // Icon facets range from dark navy (brightness ~ 15%) to teal/blue highlights (brightness ~ 45%)
       const brightness = (0.299 * r + 0.587 * g + 0.114 * b) / 255.0;
 
-      // Invert & map to silver-gray & white:
-      // Darkest parts (like text) become brightest pure white (#ffffff)
-      // Medium faceted parts become subtle silver/slate white (#cbd5e1 to #94a3b8)
-      // Lightest facet highlights become brilliant light blue/white (#e0f2fe)
-      if (brightness < 0.18) {
-        // Text & dark contours -> pure white
-        lightBuffer[i] = 255;
-        lightBuffer[i + 1] = 255;
-        lightBuffer[i + 2] = 255;
+      const pixelIndex = i / 4;
+      const x = pixelIndex % width;
+      const isTextRegion = x > width * 0.28; // Icon is on the left ~25%, text is on right
+
+      if (isTextRegion) {
+        // Text: #F7F9FB (Soft White / Pure White)
+        lightBuffer[i] = 247;
+        lightBuffer[i + 1] = 249;
+        lightBuffer[i + 2] = 251;
       } else {
-        // Hexagon 3D facets: map proportionally to white-gray gradient preserving depth
-        const val = Math.round(180 + brightness * 75); // 180 ~ 255
-        // Add subtle cool slate-blue tint to the silver
-        lightBuffer[i] = Math.min(255, Math.round(val * 0.95));
-        lightBuffer[i + 1] = Math.min(255, Math.round(val * 0.98));
-        lightBuffer[i + 2] = Math.min(255, val);
+        // Hexagon 3D facets: map proportionally between #e6ecf0 (230, 236, 240) and #F7F9FB (247, 249, 251) / pure white
+        const t = Math.min(1.0, Math.max(0.0, (brightness - 0.08) / 0.38));
+        
+        // Linear interpolation from #e6ecf0 (230, 236, 240) to #F7F9FB (247, 249, 251) and up to #FFFFFF
+        const redVal = Math.round(230 + t * (255 - 230));
+        const greenVal = Math.round(236 + t * (255 - 236));
+        const blueVal = Math.round(240 + t * (255 - 240));
+
+        lightBuffer[i] = redVal;
+        lightBuffer[i + 1] = greenVal;
+        lightBuffer[i + 2] = blueVal;
       }
     }
   }
@@ -96,6 +99,7 @@ async function processNewLogos() {
 
   fs.writeFileSync(path.join(__dirname, 'public/images/logo-white.png'), trimmedLight);
   fs.writeFileSync(path.join(__dirname, 'public/images/logo-light.png'), trimmedLight);
+  fs.writeFileSync(path.join(__dirname, 'public/logo-white.png'), trimmedLight);
 
   const lightB64 = trimmedLight.toString('base64');
   const lightSvg = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -104,8 +108,9 @@ async function processNewLogos() {
 </svg>`;
   fs.writeFileSync(path.join(__dirname, 'public/images/logo-white.svg'), lightSvg);
   fs.writeFileSync(path.join(__dirname, 'public/images/logo-light.svg'), lightSvg);
+  fs.writeFileSync(path.join(__dirname, 'public/logo-white.svg'), lightSvg);
 
-  console.log('SUCCESS: Processed both Dark Logo and White/Silver Light Logo!');
+  console.log('SUCCESS: Generated both Dark Logo and White/SoftWhite Light Logo!');
 }
 
 processNewLogos().catch(console.error);

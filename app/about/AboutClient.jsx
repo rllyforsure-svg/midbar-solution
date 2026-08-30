@@ -64,7 +64,7 @@ export default function AboutClient() {
       {/* 1. 인사말 Section */}
       <section className="about-section greeting-sec">
         <div className="about-section-container">
-          <div style={{ fontSize: '14px', fontWeight: 800, color: '#2b82e6', marginBottom: '8px' }}>회사소개 &gt;</div>
+          <div style={{ fontSize: '14px', fontWeight: 800, color: 'var(--c-marine-blue)', marginBottom: '8px' }}>회사소개 &gt;</div>
           <h1 className="about-section-title">인사말</h1>
 
           <div className="about-message-box">
@@ -92,7 +92,7 @@ export default function AboutClient() {
       {/* 2. 조직도 Section (Figma 4개 부서) */}
       <section className="about-section org-sec">
         <div className="about-section-container">
-          <div style={{ fontSize: '14px', fontWeight: 800, color: '#2b82e6', marginBottom: '8px' }}>회사소개 &gt;</div>
+          <div style={{ fontSize: '14px', fontWeight: 800, color: 'var(--c-marine-blue)', marginBottom: '8px' }}>회사소개 &gt;</div>
           <h1 className="about-section-title">조직도</h1>
 
           <div className="about-org-box">
