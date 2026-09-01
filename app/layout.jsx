@@ -32,18 +32,7 @@ export default function RootLayout({ children }) {
         <footer className="main-footer">
           <div className="container footer-grid-container">
             <div className="footer-grid">
-              {/* 1. Logo Column */}
-              <div className="footer-col brand-logo-col">
-                <Link href="/" style={{ display: 'inline-block', textDecoration: 'none' }}>
-                  <img
-                    src="/images/logo-white.svg"
-                    alt="MIDBAR SOLUTION"
-                    style={{ height: '38px', width: 'auto', display: 'block' }}
-                  />
-                </Link>
-              </div>
-
-              {/* 2. Text (Slogan & Description) Column */}
+              {/* 1. Text (Slogan & Description) Column */}
               <div className="footer-col brand-desc-col">
                 <h4 className="footer-tagline">MIDBAR SOLUTION</h4>
                 <p className="footer-desc">
@@ -61,7 +50,7 @@ export default function RootLayout({ children }) {
                 </p>
               </div>
 
-              {/* 3. Contact Column */}
+              {/* 2. Contact Column */}
               <div className="footer-col contact-col">
                 <h3 className="footer-col-title">Contact</h3>
                 <div className="footer-contact-info">

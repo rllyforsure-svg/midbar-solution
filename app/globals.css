@@ -691,42 +691,31 @@ h1, h2, h3, h4, h5, h6,
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 5% 0 6%;
   box-sizing: border-box;
   position: relative;
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.1fr 3.4fr 2.3fr;
-  /* 3열 레이아웃: 로고, 브랜드 설명&법적정보, 연락처 */
-  gap: 40px;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  /* 2열 좌측 정렬 레이아웃: 브랜드 설명&법적정보(좌), 연락처(우) */
+  gap: 50px;
+  align-items: start;
 }
 
 .footer-col {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
   gap: 20px;
-}
-
-/* 1열: 로고 열 (정중앙 배치) */
-.footer-col.brand-logo-col {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  box-sizing: border-box;
-}
-
-.footer-col.brand-logo-col .footer-logo-img {
-  height: 100px;
-  width: auto;
-  margin: 0;
 }
 
 .footer-col.brand-desc-col {
   gap: 12px;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .footer-tagline {
@@ -990,15 +979,12 @@ h1, h2, h3, h4, h5, h6,
   }
 
   .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    /* 태블릿 2열 배치 */
-    gap: 30px;
+    grid-template-columns: 1fr;
+    gap: 35px;
   }
 
-  .footer-col.brand-logo-col,
   .footer-col.brand-desc-col {
-    grid-column: span 2;
-    /* 태블릿에서는 로고와 설명글 영역을 가로 확장 */
+    grid-column: span 1;
   }
 
   /* 태블릿/모바일 반응형 시 탑 버튼은 우측 하단에 위치 */
@@ -1018,26 +1004,17 @@ h1, h2, h3, h4, h5, h6,
   @media (max-width: 576px) {
     .footer-grid {
       grid-template-columns: 1fr;
-      /* 모바일 1열 배치 */
-    }
-
-    .footer-col.brand-logo-col,
-    .footer-col.brand-desc-col {
-      grid-column: span 1;
+      gap: 30px;
     }
 
     .footer-col {
-      text-align: center;
-      align-items: center;
-    }
-
-    .footer-col.brand-col .footer-logo-img {
-      align-self: center;
+      text-align: left;
+      align-items: flex-start;
     }
 
     .footer-col-title {
-      align-self: stretch;
-      text-align: center;
+      align-self: flex-start;
+      text-align: left;
     }
 
     .footer-links-list a:hover {
@@ -1045,7 +1022,7 @@ h1, h2, h3, h4, h5, h6,
     }
 
     .footer-legal-links {
-      justify-content: center;
+      justify-content: flex-start;
     }
   }
 
