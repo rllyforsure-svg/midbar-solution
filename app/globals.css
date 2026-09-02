@@ -77,41 +77,31 @@ h1, h2, h3, h4, h5, h6,
   padding: 0 40px;
 }
 
-/* --- 헤더 스타일 (화이트 테마 100% 매칭) --- */
+/* --- 헤더 스타일 (2026 MIDBAR SOLUTION Header System) --- */
 .main-header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  height: 80px;
   z-index: 1000;
   background: #ffffff !important;
-  border-bottom: 1px solid var(--c-mist-gray) !important;
-  box-shadow: 0 4px 20px rgba(10, 28, 45, 0.05) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 2px 12px rgba(12, 35, 64, 0.04) !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.main-header .nav-link {
-  color: var(--c-steel-navy) !important; /* 모형 이미지와 동일한 네이비 딥블랙 폰트 */
-  font-weight: 700 !important;
-}
-
-.main-header .nav-link:hover,
-.main-header .nav-link.active {
-  color: var(--c-ocean-blue) !important;
-}
-
-.main-header .hamburger-line {
-  background-color: var(--c-steel-navy) !important;
+  display: flex;
+  align-items: center;
 }
 
 .header-container {
-  height: 90px;
+  height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   max-width: none;
-  padding: 0 5% 0 6%;
+  padding: 0 5%;
+  box-sizing: border-box;
 }
 
 .logo-area {
@@ -120,9 +110,165 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .header-logo-img {
-  height: 52px;
+  height: 38px;
   width: auto;
   display: block;
+}
+
+/* Nav Menu Categories */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.nav-link {
+  font-family: var(--font-primary), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 15.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  color: #0c2340 !important;
+  position: relative;
+  padding: 8px 2px 8px 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #154C78 !important;
+}
+
+.nav-link.active {
+  color: #154C78 !important;
+  font-weight: 800 !important;
+}
+
+/* Category Underline Indicator (Bottom Line) */
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  background-color: #154C78;
+  border-radius: 2px;
+}
+
+/* Header Right Area */
+.header-right-area {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Language Selector */
+.lang-selector-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.lang-divider {
+  color: rgba(12, 35, 64, 0.25);
+  font-weight: 300;
+  font-size: 16px;
+  margin-right: 12px;
+  user-select: none;
+}
+
+.lang-selector-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 4px;
+  color: #0c2340;
+  font-family: var(--font-primary), sans-serif;
+  font-size: 14.5px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  transition: color 0.2s ease;
+}
+
+.lang-selector-btn:hover {
+  color: #154C78;
+}
+
+.lang-chevron-icon {
+  color: #154C78;
+  transition: transform 0.2s ease;
+}
+
+.lang-chevron-icon.open {
+  transform: rotate(180deg);
+}
+
+.lang-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 24px rgba(12, 35, 64, 0.12);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 1200;
+  min-width: 125px;
+}
+
+.lang-dropdown-item {
+  width: 100%;
+  padding: 10px 14px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0c2340;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.lang-dropdown-item:hover {
+  background: #f1f5f9;
+  color: #154C78;
+}
+
+.lang-dropdown-item.active {
+  background: #eef6fc;
+  color: #154C78;
+  font-weight: 800;
+}
+
+/* Hamburger Button */
+.header-hamburger-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 6px 0 6px 6px;
+  z-index: 110;
+}
+
+.hamburger-line {
+  display: block;
+  width: 22px;
+  height: 2.2px;
+  background-color: #0c2340 !important;
+  transition: all 0.2s ease;
+}
+
+.header-hamburger-btn:hover .hamburger-line {
+  background-color: #154C78 !important;
 }
 
 /* =========================================================
@@ -412,74 +558,7 @@ h1, h2, h3, h4, h5, h6,
   align-items: center;
 }
 
-.header-logo-img {
-  height: 70px;
-  /* 88px에서 70px로 완충 조정 (중간값) */
-  width: auto;
-  display: block;
-  /* filter 제거: 상단 헤더의 로고 역시 원본 브랜드 컬러(남색 & 검은색)로 복구 */
-}
 
-/* 우측 정렬 영역 */
-.header-right-area {
-  display: flex;
-  align-items: center;
-  gap: 100px;
-  /* 메뉴와 햄버거 버튼 사이 간격을 80px에서 100px로 확대하여 더 우측으로 이동 */
-}
-
-.nav-menu {
-  display: flex;
-  gap: 56px;
-}
-
-.nav-link {
-  font-family: var(--font-primary);
-  font-size: 20px;
-  /* 17px에서 20px로 크기 대폭 확대 */
-  font-weight: 500;
-  /* 일반 상태는 500 (기본값) */
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.85);
-  transition: var(--transition-fast);
-  position: relative;
-  padding: 8px 0;
-}
-
-.nav-link:hover,
-.nav-link.active {
-  color: #2b82e6;
-  /* 글자 호버 및 활성화 시 파란색 */
-  font-weight: 800;
-  /* 글자 호버 및 활성화 시 볼드 적용 */
-}
-
-/* 햄버거 메뉴 버튼 */
-.header-hamburger-btn {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  /* 7px에서 6px로 조정 */
-  padding: 8px;
-  z-index: 110;
-}
-
-.hamburger-line {
-  display: block;
-  width: 26px;
-  /* 32px에서 26px로 완충 조정 (중간값) */
-  height: 2.2px;
-  /* 3px에서 2.2px로 변경 */
-  background-color: white;
-  transition: var(--transition-fast);
-}
-
-.header-hamburger-btn:hover .hamburger-line {
-  background-color: rgba(255, 255, 255, 0.8);
-}
 
 /* --- 히어로 슬라이더 (Hero Carousel) --- */
 .hero-carousel-container {
@@ -1096,26 +1175,23 @@ h1, h2, h3, h4, h5, h6,
 /* 서브페이지 레이아웃 */
 /* --- 서브페이지 헤더 테마 (Subpage Header White Theme) --- */
 .main-header.subpage-header {
-  background-color: white;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: white !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
 }
 
 .main-header.subpage-header .nav-link {
-  color: #000;
-  /* 서브페이지 기본 메뉴 색상을 선명한 검은색으로 변경 */
-  font-weight: 800;
-  /* 기본 메뉴 상태도 검은색 볼드(800)로 통일 적용 */
+  color: #0c2340 !important;
+  font-weight: 700 !important;
 }
 
 .main-header.subpage-header .nav-link:hover,
 .main-header.subpage-header .nav-link.active {
-  color: #2b82e6;
-  font-weight: 800;
-  /* 활성화 시 파란색 볼드 적용 */
+  color: #154C78 !important;
+  font-weight: 800 !important;
 }
 
 .main-header.subpage-header .hamburger-line {
-  background-color: #111;
+  background-color: #0c2340 !important;
 }
 
 /* --- 서브페이지 탭 레이아웃 (Subpage Tab & Split View) --- */
@@ -4476,28 +4552,28 @@ h1, h2, h3, h4, h5, h6,
    - 핵심기술(/tech): 1st Fold Dark Tech Split (#071120) + 2nd Fold Light Tech Extra (#f7f9fc)
    ========================================================= */
 
-/* 1. Scrolled & Subpage Fixed Header (White Background -> Black Text) */
+/* 1. Scrolled & Subpage Fixed Header (White Background -> Navy Text) */
 .main-header.scrolled,
 .main-header.subpage-header {
   background-color: rgba(255, 255, 255, 0.98) !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 4px 20px rgba(12, 35, 64, 0.06) !important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
 }
 .main-header.scrolled .nav-link,
 .main-header.subpage-header .nav-link {
-  color: #000000 !important;
+  color: #0c2340 !important;
   font-weight: 700 !important;
 }
 .main-header.scrolled .nav-link:hover,
 .main-header.scrolled .nav-link.active,
 .main-header.subpage-header .nav-link:hover,
 .main-header.subpage-header .nav-link.active {
-  color: #2b82e6 !important;
+  color: #154C78 !important;
   font-weight: 800 !important;
 }
 .main-header.scrolled .hamburger-line,
 .main-header.subpage-header .hamburger-line {
-  background-color: #111111 !important;
+  background-color: #0c2340 !important;
 }
 
 /* 2. Global Mobile Sidebar */
@@ -5196,6 +5272,415 @@ h1, h2, h3, h4, h5, h6,
     border-radius: 14px;
   }
 }
+
+/* =========================================================
+   [SIDEBAR ENHANCEMENTS - MIDBAR]
+   ========================================================= */
+.sidebar-nav-kr-sub {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+  margin-left: 8px;
+}
+
+.sidebar-nav-link.active {
+  color: #154C78 !important;
+  font-weight: 800 !important;
+}
+
+.sidebar-accordion-trigger.active {
+  color: #154C78 !important;
+}
+
+.sidebar-lang-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  margin-top: 20px;
+}
+
+.sidebar-lang-label {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.sidebar-lang-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebar-lang-btn {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  font-weight: 800;
+  color: #0c2340;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.sidebar-lang-btn.active {
+  background: #154C78;
+  color: #ffffff;
+}
+
+/* =========================================================
+   [CAREERS PAGE STYLING]
+   ========================================================= */
+.careers-page-wrapper {
+  padding-top: 80px;
+  background-color: #ffffff;
+  color: #0c2340;
+}
+
+.careers-hero-sec {
+  padding: 80px 0 60px 0;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.careers-hero-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background-color: #eef6fc;
+  color: #154C78;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.careers-hero-title {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  line-height: 1.35;
+  color: #0c2340;
+  margin-bottom: 20px;
+}
+
+.careers-hero-title span {
+  color: #154C78;
+}
+
+.careers-hero-desc {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #475569;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.careers-culture-sec,
+.careers-positions-sec,
+.careers-benefits-sec {
+  padding: 80px 0;
+}
+
+.careers-section-title {
+  font-size: 30px;
+  font-weight: 800;
+  color: #0c2340;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.careers-section-subtitle {
+  font-size: 16px;
+  color: #64748b;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+/* Culture Cards */
+.culture-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.culture-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 36px 28px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.culture-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(21, 76, 120, 0.08);
+  border-color: #cbd5e1;
+}
+
+.culture-num {
+  font-size: 32px;
+  font-weight: 900;
+  color: #154C78;
+  opacity: 0.4;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.culture-card h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #0c2340;
+  margin-bottom: 12px;
+}
+
+.culture-card p {
+  font-size: 14.5px;
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* Position Cards */
+.positions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.position-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: all 0.3s ease;
+}
+
+.position-card:hover {
+  border-color: #154C78;
+  box-shadow: 0 12px 28px rgba(21, 76, 120, 0.08);
+}
+
+.pos-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pos-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pos-dept {
+  font-size: 13px;
+  font-weight: 800;
+  color: #154C78;
+  background: #eef6fc;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.pos-type {
+  font-size: 13px;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.pos-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0c2340;
+}
+
+.pos-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.pos-tag {
+  font-size: 12.5px;
+  color: #475569;
+  background: #f1f5f9;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.pos-desc {
+  font-size: 15px;
+  color: #334155;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.pos-reqs h4 {
+  font-size: 14px;
+  font-weight: 800;
+  color: #0c2340;
+  margin-bottom: 8px;
+}
+
+.pos-reqs ul {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pos-reqs li {
+  font-size: 14px;
+  color: #475569;
+}
+
+.pos-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 12px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.pos-apply-btn {
+  display: inline-block;
+  padding: 10px 24px;
+  background-color: #154C78;
+  color: #ffffff;
+  font-size: 14.5px;
+  font-weight: 700;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.pos-apply-btn:hover {
+  background-color: #0f3758;
+  transform: translateY(-2px);
+}
+
+/* Benefits Grid */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.benefit-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 28px;
+}
+
+.benefit-icon {
+  font-size: 32px;
+  margin-bottom: 14px;
+}
+
+.benefit-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #0c2340;
+  margin-bottom: 8px;
+}
+
+.benefit-desc {
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* Contact Box */
+.careers-contact-sec {
+  padding: 40px 0 100px 0;
+}
+
+.careers-contact-box {
+  background: linear-gradient(135deg, #0c2340 0%, #154C78 100%);
+  border-radius: 20px;
+  padding: 50px 40px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.careers-contact-box h2 {
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.careers-contact-box p {
+  font-size: 15.5px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.careers-contact-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.careers-email-btn {
+  background: #ffffff;
+  color: #154C78;
+  font-size: 15px;
+  font-weight: 800;
+  padding: 12px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.careers-email-btn:hover {
+  background: #f1f5f9;
+  transform: translateY(-2px);
+}
+
+.careers-inquiry-btn {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.careers-inquiry-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 992px) {
+  .culture-grid,
+  .benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .culture-grid,
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+  .position-card {
+    padding: 24px;
+  }
+}
+
 
 
 
