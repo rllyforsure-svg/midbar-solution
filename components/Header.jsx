@@ -1,8 +1,16 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+
+const navItems = [
+  { key: 'about', label: 'ABOUT', href: '/about', match: (p) => p === '/about' || p.startsWith('/about/') },
+  { key: 'solution', label: 'SOLUTION', href: '/products', match: (p) => p === '/products' || p.startsWith('/products/') || p === '/solution' || p.startsWith('/solution/') },
+  { key: 'capability', label: 'CAPABILITY', href: '/tech', match: (p) => p === '/tech' || p.startsWith('/tech/') || p === '/capability' || p.startsWith('/capability/') },
+  { key: 'insights', label: 'INSIGHTS', href: '/insights', match: (p) => p === '/insights' || p.startsWith('/insights/') },
+  { key: 'contact', label: 'CONTACT', href: '/support', match: (p) => p === '/support' || p.startsWith('/support/') || p === '/contact' || p.startsWith('/contact/') }
+];
 
 export default function Header() {
   const pathname = usePathname();
@@ -13,15 +21,58 @@ export default function Header() {
   const [lang, setLang] = useState('KR');
   const [isLangOpen, setIsLangOpen] = useState(false);
 
+  const [hoveredKey, setHoveredKey] = useState(null);
+  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 });
+  const navRef = useRef(null);
+  const itemRefs = useRef({});
+
+  // Active Category Detection
+  const activeItem = navItems.find((item) => item.match(pathname));
+
+  // Update Sliding Underbar Position
+  const updateIndicator = (key) => {
+    const targetKey = key || (activeItem ? activeItem.key : null);
+    if (!targetKey) {
+      setIndicatorStyle((prev) => ({ ...prev, opacity: 0 }));
+      return;
+    }
+
+    const el = itemRefs.current[targetKey];
+    const navEl = navRef.current;
+    if (el && navEl) {
+      const navRect = navEl.getBoundingClientRect();
+      const elRect = el.getBoundingClientRect();
+      const left = elRect.left - navRect.left;
+      const width = elRect.width;
+      setIndicatorStyle({
+        left: `${left}px`,
+        width: `${width}px`,
+        opacity: 1
+      });
+    }
+  };
+
+  useEffect(() => {
+    updateIndicator(hoveredKey);
+  }, [hoveredKey, pathname]);
+
+  useEffect(() => {
+    const handleResize = () => updateIndicator(hoveredKey);
+    window.addEventListener('resize', handleResize);
+    const timer = setTimeout(() => updateIndicator(null), 60);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(timer);
+    };
+  }, [pathname]);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
     handleScroll();
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const toggleSidebar = () => {
@@ -52,18 +103,11 @@ export default function Header() {
     setIsLangOpen(false);
   }, [pathname]);
 
-  // Active Category Detection for each category path
-  const isAboutActive = pathname === '/about' || pathname.startsWith('/about/');
-  const isSolutionActive = pathname === '/products' || pathname.startsWith('/products/') || pathname === '/solution' || pathname.startsWith('/solution/');
-  const isCapabilityActive = pathname === '/tech' || pathname.startsWith('/tech/') || pathname === '/capability' || pathname.startsWith('/capability/');
-  const isCareersActive = pathname === '/careers' || pathname.startsWith('/careers/');
-  const isContactActive = pathname === '/support' || pathname.startsWith('/support/') || pathname === '/contact' || pathname.startsWith('/contact/');
-
   return (
     <>
       <header className={`main-header ${isSubpage ? 'subpage-header' : ''} ${scrolled ? 'scrolled' : ''}`}>
         <div className="header-container">
-          {/* Logo Area */}
+          {/* Left: Logo Area */}
           <div className="logo-area">
             <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
               <img
@@ -74,41 +118,40 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Center: Navigation Menu */}
-          <nav className="nav-menu">
-            <Link
-              href="/about"
-              className={`nav-link ${isAboutActive ? 'active' : ''}`}
-            >
-              ABOUT
-            </Link>
-            <Link
-              href="/products"
-              className={`nav-link ${isSolutionActive ? 'active' : ''}`}
-            >
-              SOLUTION
-            </Link>
-            <Link
-              href="/tech"
-              className={`nav-link ${isCapabilityActive ? 'active' : ''}`}
-            >
-              CAPABILITY
-            </Link>
-            <Link
-              href="/careers"
-              className={`nav-link ${isCareersActive ? 'active' : ''}`}
-            >
-              CAREERS
-            </Link>
-            <Link
-              href="/support"
-              className={`nav-link ${isContactActive ? 'active' : ''}`}
-            >
-              CONTACT
-            </Link>
+          {/* Center: Navigation Menu with Sliding Underbar */}
+          <nav
+            className="nav-menu"
+            ref={navRef}
+            onMouseLeave={() => setHoveredKey(null)}
+          >
+            {navItems.map((item) => {
+              const isActive = activeItem?.key === item.key;
+              const isHovered = hoveredKey === item.key;
+              return (
+                <Link
+                  key={item.key}
+                  href={item.href}
+                  ref={(el) => (itemRefs.current[item.key] = el)}
+                  className={`nav-link ${isActive ? 'active' : ''} ${isHovered ? 'hovered' : ''}`}
+                  onMouseEnter={() => setHoveredKey(item.key)}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+
+            {/* Smooth Dynamic Underbar Indicator */}
+            <span
+              className="nav-sliding-indicator"
+              style={{
+                left: indicatorStyle.left,
+                width: indicatorStyle.width,
+                opacity: indicatorStyle.opacity
+              }}
+            />
           </nav>
 
-          {/* Right Area: Language Selector & Hamburger */}
+          {/* Right Area: Language Selector & Hamburger Button */}
           <div className="header-right-area">
             <div className="lang-selector-container">
               <span className="lang-divider">|</span>
@@ -192,15 +235,15 @@ export default function Header() {
         <nav className="sidebar-nav">
           {/* ABOUT */}
           <div className="sidebar-nav-item">
-            <Link href="/about" className={`sidebar-nav-link ${isAboutActive ? 'active' : ''}`} onClick={closeSidebar}>
+            <Link href="/about" className={`sidebar-nav-link ${activeItem?.key === 'about' ? 'active' : ''}`} onClick={closeSidebar}>
               <span>ABOUT</span>
               <span className="sidebar-nav-kr-sub">회사소개</span>
             </Link>
           </div>
 
           {/* SOLUTION (Accordion) */}
-          <div className={`sidebar-nav-item accordion ${activeAccordion === 'solution' || isSolutionActive ? 'open' : ''}`}>
-            <button className={`sidebar-accordion-trigger ${isSolutionActive ? 'active' : ''}`} onClick={() => toggleAccordion('solution')}>
+          <div className={`sidebar-nav-item accordion ${activeAccordion === 'solution' || activeItem?.key === 'solution' ? 'open' : ''}`}>
+            <button className={`sidebar-accordion-trigger ${activeItem?.key === 'solution' ? 'active' : ''}`} onClick={() => toggleAccordion('solution')}>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
                 <span>SOLUTION</span>
                 <span className="sidebar-nav-kr-sub">솔루션</span>
@@ -214,8 +257,8 @@ export default function Header() {
           </div>
 
           {/* CAPABILITY (Accordion) */}
-          <div className={`sidebar-nav-item accordion ${activeAccordion === 'capability' || isCapabilityActive ? 'open' : ''}`}>
-            <button className={`sidebar-accordion-trigger ${isCapabilityActive ? 'active' : ''}`} onClick={() => toggleAccordion('capability')}>
+          <div className={`sidebar-nav-item accordion ${activeAccordion === 'capability' || activeItem?.key === 'capability' ? 'open' : ''}`}>
+            <button className={`sidebar-accordion-trigger ${activeItem?.key === 'capability' ? 'active' : ''}`} onClick={() => toggleAccordion('capability')}>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
                 <span>CAPABILITY</span>
                 <span className="sidebar-nav-kr-sub">핵심역량</span>
@@ -229,44 +272,22 @@ export default function Header() {
             </div>
           </div>
 
-          {/* CAREERS */}
+          {/* INSIGHTS */}
           <div className="sidebar-nav-item">
-            <Link href="/careers" className={`sidebar-nav-link ${isCareersActive ? 'active' : ''}`} onClick={closeSidebar}>
-              <span>CAREERS</span>
-              <span className="sidebar-nav-kr-sub">인재채용</span>
+            <Link href="/insights" className={`sidebar-nav-link ${activeItem?.key === 'insights' ? 'active' : ''}`} onClick={closeSidebar}>
+              <span>INSIGHTS</span>
+              <span className="sidebar-nav-kr-sub">기술인사이트</span>
             </Link>
           </div>
 
           {/* CONTACT */}
           <div className="sidebar-nav-item">
-            <Link href="/support" className={`sidebar-nav-link ${isContactActive ? 'active' : ''}`} onClick={closeSidebar}>
+            <Link href="/support" className={`sidebar-nav-link ${activeItem?.key === 'contact' ? 'active' : ''}`} onClick={closeSidebar}>
               <span>CONTACT</span>
               <span className="sidebar-nav-kr-sub">고객지원</span>
             </Link>
           </div>
         </nav>
-
-        {/* Sidebar Language Selection */}
-        <div className="sidebar-lang-area">
-          <span className="sidebar-lang-label">Language :</span>
-          <div className="sidebar-lang-buttons">
-            <button
-              type="button"
-              className={`sidebar-lang-btn ${lang === 'KR' ? 'active' : ''}`}
-              onClick={() => setLang('KR')}
-            >
-              KR
-            </button>
-            <span style={{ color: 'rgba(0,0,0,0.2)' }}>/</span>
-            <button
-              type="button"
-              className={`sidebar-lang-btn ${lang === 'EN' ? 'active' : ''}`}
-              onClick={() => setLang('EN')}
-            >
-              EN
-            </button>
-          </div>
-        </div>
 
         {/* Sidebar Footer Info */}
         <div className="sidebar-footer">
